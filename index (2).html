@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Геометрия">
+<meta name="theme-color" content="#04060c">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
+<title>Геометрия · Интерактивный учебный портал</title>
+<meta name="description" content="Интерактивная лаборатория по геометрии: многогранники, теорема Пифагора, графики функций.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2304060c'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='url(%23g)' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M16 16l9-5M16 16L7 11M16 16v11' stroke='url(%23g)' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/tailwind.css">
+</head>
+<body class="font-sans">
+
+<!-- Спрайт иконок (встроен, без внешних запросов) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></symbol>
+    <symbol id="i-rot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l5 5 5-5"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-3-3"/><path d="M18 16H6l3 3"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></symbol>
+    <symbol id="i-restart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></symbol>
+    <symbol id="i-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M17 9.5l5 5M22 9.5l-5 5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3 5.5 6.3 5.5c2 0 3.6 1.1 5.7 3.3 2.1-2.2 3.7-3.3 5.7-3.3 3.3 0 5.1 3.2 3.8 6.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-heart-fill" viewBox="0 0 24 24" fill="#fb7185"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3 5.5 6.3 5.5c2 0 3.6 1.1 5.7 3.3 2.1-2.2 3.7-3.3 5.7-3.3 3.3 0 5.1 3.2 3.8 6.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-loop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol>
+    <symbol id="i-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    <symbol id="i-geo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></symbol>
+    <symbol id="i-tetris" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="9" y="3" width="6" height="6" rx="1.2"/><rect x="15" y="3" width="6" height="6" rx="1.2"/><rect x="9" y="9" width="6" height="6" rx="1.2"/><rect x="3" y="15" width="6" height="6" rx="1.2"/><rect x="9" y="15" width="6" height="6" rx="1.2"/></symbol>
+    <symbol id="i-snake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4H9a4 4 0 0 0 0 8h6a4 4 0 0 1 0 8H5"/><circle cx="19.5" cy="4" r="1.3" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-media" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 9l4 3-4 3z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="app-bg" aria-hidden="true"></div>
+
+<div class="app">
+  <!-- ═════════ Боковая панель ═════════ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="grid h-11 w-11 flex-none place-items-center rounded-2xl bg-gradient-to-br from-neon-cyan to-neon-violet text-ink-950 shadow-glow">
+        <svg class="h-6 w-6"><use href="#i-geo"/></svg>
+      </div>
+      <div class="hidden lg:block">
+        <div class="text-[15px] font-extrabold tracking-[.18em] text-white">ГЕОМЕТРИЯ</div>
+        <div class="text-xs text-slate-400">Интерактивный курс</div>
+      </div>
+    </div>
+
+    <nav role="tablist" aria-orientation="vertical" aria-label="Разделы портала" class="flex flex-col gap-2">
+      <button id="nav-geometry" class="nav-item is-active" role="tab" aria-selected="true" aria-controls="tab-geometry" data-tab="geometry" title="Геометрия (Главная)">
+        <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-geo"/></svg></span>
+        <span class="nav-short">Геометрия</span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Геометрия</span><span class="block text-xs text-slate-400">Главная · формулы и 3D</span></span>
+      </button>
+      <button id="nav-tetris" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-tetris" data-tab="tetris" title="Clash Royale / Игры" tabindex="-1">
+        <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-tetris"/></svg></span>
+        <span class="nav-short">Тетрис</span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Clash Royale / Игры</span><span class="block text-xs text-slate-400">Cloud gaming · Clash Royale</span></span>
+      </button>
+      <button id="nav-snake" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-snake" data-tab="snake" title="Minecraft" tabindex="-1">
+        <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-snake"/></svg></span>
+        <span class="nav-short">Змейка</span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Minecraft</span><span class="block text-xs text-slate-400">Minecraft Classic</span></span>
+      </button>
+      <button id="nav-media" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-media" data-tab="media" title="TikTok" tabindex="-1">
+        <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-media"/></svg></span>
+        <span class="nav-short">Плеер</span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">TikTok</span><span class="block text-xs text-slate-400">TikTok · видео</span></span>
+      </button>
+    </nav>
+
+    <div class="mt-auto hidden lg:block">
+      <div class="chip w-full justify-center"><span class="h-2 w-2 rounded-full bg-neon-lime shadow-[0_0_10px_#a3e635]"></span>Все материалы — на этом сайте</div>
+    </div>
+  </aside>
+
+  <!-- ═════════ Контент ═════════ -->
+  <main class="relative min-w-0 flex-1">
+
+    <!-- ───────── 1. Геометрия (Главная) ───────── -->
+    <section id="tab-geometry" class="panel is-active" role="tabpanel" aria-labelledby="nav-geometry">
+      <div class="mx-auto max-w-[1080px]">
+        <header class="panel-head">
+          <div>
+            <div class="chip mb-3">Интерактивный курс · Геометрия и анализ</div>
+            <h1 class="h-title">Геометрия <span class="h-grad">в движении</span></h1>
+            <p class="h-sub">Вращайте многогранники, меняйте катеты и параметры функций — формулы пересчитываются мгновенно.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip">Теорема Эйлера</span><span class="chip">Пифагор</span><span class="chip">Тригонометрия</span>
+          </div>
+        </header>
+
+        <div class="grid gap-5 lg:grid-cols-2">
+
+          <!-- 3D -->
+          <article class="card lg:col-span-2">
+            <h2 class="card-title"><span class="dot"></span>Платоновы тела · 3D</h2>
+            <p class="card-sub">Потяните фигуру пальцем, чтобы повернуть её. Проверьте формулу Эйлера для каждого тела.</p>
+            <div class="mt-4 grid gap-4 md:grid-cols-[1fr_280px]">
+              <div class="canvas-box h-[330px] md:h-[400px]">
+                <canvas id="solid-canvas" aria-label="Вращающийся многогранник"></canvas>
+                <div id="solid-fallback" class="absolute inset-0 hidden">
+                  <div class="css-cube-scene"><div class="css-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div id="solid-pills" class="flex flex-wrap gap-2" role="group" aria-label="Выбор многогранника">
+                  <button class="pill" data-solid="tetra" aria-pressed="false">Тетраэдр</button>
+                  <button class="pill" data-solid="cube" aria-pressed="true">Куб</button>
+                  <button class="pill" data-solid="octa" aria-pressed="false">Октаэдр</button>
+                  <button class="pill" data-solid="dodeca" aria-pressed="false">Додекаэдр</button>
+                  <button class="pill" data-solid="icosa" aria-pressed="false">Икосаэдр</button>
+                </div>
+                <div class="stat">
+                  <div class="lbl">Грани</div>
+                  <div class="text-lg font-bold text-white" id="solid-name">Куб</div>
+                  <div class="text-sm text-slate-400" id="solid-faces">квадраты</div>
+                </div>
+                <div class="stat">
+                  <div class="lbl">Формула Эйлера</div>
+                  <div class="math my-1 text-[28px]"><i>V</i> − <i>E</i> + <i>F</i> = 2</div>
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div><div class="text-[11px] uppercase tracking-widest text-slate-500">вершин</div><div class="readout text-xl text-neon-cyan" id="euler-v">8</div></div>
+                    <div><div class="text-[11px] uppercase tracking-widest text-slate-500">рёбер</div><div class="readout text-xl text-neon-violet" id="euler-e">12</div></div>
+                    <div><div class="text-[11px] uppercase tracking-widest text-slate-500">граней</div><div class="readout text-xl text-neon-pink" id="euler-f">6</div></div>
+                  </div>
+                  <div class="readout mt-2 text-center" id="euler-line">8 − 12 + 6 = <b>2</b> ✓</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Пифагор -->
+          <article class="card">
+            <h2 class="card-title"><span class="dot"></span>Теорема Пифагора</h2>
+            <p class="card-sub">Площадь квадрата на гипотенузе равна сумме площадей квадратов на катетах.</p>
+            <div class="canvas-box mt-3 h-[270px]"><canvas id="pyth-canvas" aria-label="Прямоугольный треугольник с квадратами на сторонах"></canvas></div>
+            <div class="mt-3 grid gap-0.5">
+              <div class="slider-row"><span class="k">катет a</span><input id="pyth-a" class="rng" type="range" min="1" max="8" step="0.1" value="3" aria-label="Катет a"><span class="v" id="pyth-a-v">3.0</span></div>
+              <div class="slider-row"><span class="k">катет b</span><input id="pyth-b" class="rng" type="range" min="1" max="8" step="0.1" value="4" aria-label="Катет b"><span class="v" id="pyth-b-v">4.0</span></div>
+            </div>
+            <div class="readout mt-2" id="pyth-out"></div>
+          </article>
+
+          <!-- График -->
+          <article class="card">
+            <h2 class="card-title"><span class="dot"></span>График функции</h2>
+            <p class="card-sub">Выберите тип функции и двигайте параметры. Коснитесь графика, чтобы увидеть точку.</p>
+            <div id="graph-types" class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Тип функции">
+              <button class="pill" data-type="sin" aria-pressed="true">Синусоида</button>
+              <button class="pill" data-type="quad" aria-pressed="false">Парабола</button>
+              <button class="pill" data-type="exp" aria-pressed="false">Экспонента</button>
+            </div>
+            <div class="canvas-box mt-3 h-[220px]"><canvas id="graph-canvas" aria-label="График функции"></canvas></div>
+            <div class="math mt-2 text-xl" id="graph-eq"></div>
+            <div class="mt-1 grid gap-0.5">
+              <div class="slider-row"><span class="k" id="g-a-k">a</span><input id="g-a" class="rng" type="range" aria-label="Параметр a"><span class="v" id="g-a-v"></span></div>
+              <div class="slider-row"><span class="k" id="g-b-k">b</span><input id="g-b" class="rng" type="range" aria-label="Параметр b"><span class="v" id="g-b-v"></span></div>
+              <div class="slider-row"><span class="k" id="g-c-k">c</span><input id="g-c" class="rng" type="range" aria-label="Параметр c"><span class="v" id="g-c-v"></span></div>
+            </div>
+            <div class="readout mt-2" id="graph-out"></div>
+          </article>
+
+          <!-- Окружность и шар -->
+          <article class="card">
+            <h2 class="card-title"><span class="dot"></span>Окружность и шар</h2>
+            <p class="card-sub">Меняйте радиус — длина, площадь и объём считаются по формулам.</p>
+            <div class="mt-3 flex h-[210px] items-center justify-around rounded-[18px] border border-slate-400/10 bg-ink-950/60">
+              <div class="text-center">
+                <div id="circ-vis" class="mx-auto rounded-full border-2 border-neon-cyan shadow-glow" style="background:radial-gradient(circle at 50% 50%, rgba(34,211,238,.12), rgba(34,211,238,.02) 70%)"></div>
+                <div class="mt-2 text-xs uppercase tracking-widest text-slate-500">круг</div>
+              </div>
+              <div class="text-center">
+                <div id="sph-vis" class="mx-auto rounded-full shadow-glow-v" style="background:radial-gradient(circle at 32% 28%, #e9d5ff 0%, #a78bfa 28%, #4c1d95 70%, #1e1b4b 100%)"></div>
+                <div class="mt-2 text-xs uppercase tracking-widest text-slate-500">шар</div>
+              </div>
+            </div>
+            <div class="mt-3 slider-row"><span class="k">радиус r</span><input id="circ-r" class="rng" type="range" min="1" max="12" step="0.5" value="5" aria-label="Радиус"><span class="v" id="circ-r-v">5.0</span></div>
+            <div class="mt-2 grid grid-cols-2 gap-x-4 gap-y-2" id="circ-out"></div>
+          </article>
+
+          <!-- Единичная окружность -->
+          <article class="card">
+            <h2 class="card-title"><span class="dot"></span>Единичная окружность</h2>
+            <p class="card-sub">Точка на окружности «рисует» синусоиду. Перетащите точку, чтобы задать угол.</p>
+            <div class="canvas-box mt-3 h-[210px]"><canvas id="unit-canvas" aria-label="Единичная окружность и синусоида"></canvas></div>
+            <div class="mt-3 flex items-center justify-between gap-3">
+              <div class="readout" id="unit-out"></div>
+              <button id="unit-play" class="pill flex-none" aria-pressed="true">Пауза</button>
+            </div>
+          </article>
+
+          <!-- Стена формул -->
+          <article class="card lg:col-span-2">
+            <h2 class="card-title"><span class="dot"></span>Опорные формулы</h2>
+            <p class="card-sub">Коснитесь карточки, чтобы увидеть пояснение.</p>
+            <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3" id="formula-wall">
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Формула Герона</div>
+                <div class="f-eq math"><i>S</i> = <span class="sqrt"><span class="rad"><i>p</i>(<i>p</i>−<i>a</i>)(<i>p</i>−<i>b</i>)(<i>p</i>−<i>c</i>)</span></span></div>
+                <div class="f-note">Площадь треугольника по трём сторонам, где <i>p</i> = (<i>a</i>+<i>b</i>+<i>c</i>)/2 — полупериметр. Для сторон 3, 4, 5: <i>p</i> = 6, <i>S</i> = 6.</div>
+              </button>
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Теорема косинусов</div>
+                <div class="f-eq math"><i>c</i><sup>2</sup> = <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup> − 2<i>ab</i>·cos <i>γ</i></div>
+                <div class="f-note">Обобщение теоремы Пифагора: при <i>γ</i> = 90° косинус равен нулю и остаётся <i>c</i>² = <i>a</i>² + <i>b</i>².</div>
+              </button>
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Квадратное уравнение</div>
+                <div class="f-eq math"><i>x</i> = <span class="frac"><span>−<i>b</i> ± <span class="sqrt"><span class="rad"><i>b</i><sup>2</sup> − 4<i>ac</i></span></span></span><span>2<i>a</i></span></span></div>
+                <div class="f-note">Знак дискриминанта <i>D</i> = <i>b</i>² − 4<i>ac</i> определяет число вещественных корней: два, один или ни одного. Проверьте на параболе выше.</div>
+              </button>
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Тождество Эйлера</div>
+                <div class="f-eq math"><i>e</i><sup><i>iπ</i></sup> + 1 = 0</div>
+                <div class="f-note">Связывает пять фундаментальных констант: <i>e</i>, <i>i</i>, <i>π</i>, 1 и 0. Следствие формулы <i>e</i><sup><i>iφ</i></sup> = cos <i>φ</i> + <i>i</i> sin <i>φ</i> при <i>φ</i> = π.</div>
+              </button>
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Сумма углов многоугольника</div>
+                <div class="f-eq math">(<i>n</i> − 2) · 180°</div>
+                <div class="f-note">Любой выпуклый <i>n</i>-угольник делится диагоналями из одной вершины на <i>n</i> − 2 треугольника. Для шестиугольника: 4 · 180° = 720°.</div>
+              </button>
+              <button class="formula-tile" aria-expanded="false">
+                <div class="f-name">Расстояние между точками</div>
+                <div class="f-eq math"><i>d</i> = <span class="sqrt"><span class="rad">(<i>x</i><sub>2</sub>−<i>x</i><sub>1</sub>)<sup>2</sup> + (<i>y</i><sub>2</sub>−<i>y</i><sub>1</sub>)<sup>2</sup></span></span></div>
+                <div class="f-note">Теорема Пифагора в координатах: разности координат — катеты, расстояние — гипотенуза. Для (0,0) и (3,4): <i>d</i> = 5.</div>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+<!-- ───────── 2. Тетрис (CloudMoon: Brawl Stars / Clash Royale) ───────── -->
+    <section id="tab-tetris" class="panel" role="tabpanel" aria-labelledby="nav-tetris" aria-hidden="true">
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe title="CloudMoon — игры" src="https://web.cloudmoonapp.com/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox"></iframe>
+      </div>
+    </section>
+
+<!-- ───────── 3. Змейка (Minecraft Web) ───────── -->
+    <section id="tab-snake" class="panel" role="tabpanel" aria-labelledby="nav-snake" aria-hidden="true">
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe title="Minecraft Classic" src="https://bloxd.io" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; fullscreen; pointer-lock" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+      </div>
+    </section>
+
+<!-- ───────── 4. TikTok (TikTok Web) ───────── -->
+    <section id="tab-media" class="panel" role="tabpanel" aria-labelledby="nav-media" aria-hidden="true">
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe title="TikTok" src="https://urlebird.com" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+      </div>
+    </section>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   Геометрия · интерактивный портал. Весь код автономный:
+   без внешних скриптов, шрифтов, iframe и сетевых запросов.
+   ════════════════════════════════════════════════════════════════ */
+(function () {
+'use strict';
+
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+var TAU = Math.PI * 2;
+
+var store = {
+  get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* Холст с фиксированной логической сеткой (игры): чёткий рендер на Retina */
+function fitCanvas(canvas, lw, lh, redraw) {
+  var ctx = canvas.getContext('2d'), ready = false;
+  function apply() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    var cw = canvas.clientWidth || lw, ch = canvas.clientHeight || lh;
+    var w = Math.round(cw * dpr), h = Math.round(ch * dpr);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    ctx.setTransform(w / lw, 0, 0, h / lh, 0, 0);
+    if (redraw && ready) redraw(); /* первый вызов — без перерисовки: контекст ещё не возвращён вызывающему коду */
+  }
+  apply(); ready = true;
+  if ('ResizeObserver' in window) new ResizeObserver(apply).observe(canvas); else window.addEventListener('resize', apply);
+  return ctx;
+}
+
+/* Холст «по размеру контейнера» (графики): координаты в CSS-пикселях */
+function fluid(canvas) {
+  var o = { canvas: canvas, ctx: canvas.getContext('2d'), w: 0, h: 0, dirty: true };
+  function apply() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    o.w = canvas.clientWidth; o.h = canvas.clientHeight;
+    canvas.width = Math.max(1, Math.round(o.w * dpr)); canvas.height = Math.max(1, Math.round(o.h * dpr));
+    o.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    o.dirty = true;
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(apply).observe(canvas); else window.addEventListener('resize', apply);
+  apply();
+  return o;
+}
+
+function rr(ctx, x, y, w, h, r) {
+  r = Math.min(r, w / 2, h / 2);
+  ctx.beginPath(); ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+
+function setFill(rng) { /* заливка трека ползунка */
+  var p = (rng.value - rng.min) / (rng.max - rng.min) * 100;
+  rng.style.setProperty('--p', p + '%');
+}
+
+/* ════════════ Навигация по вкладкам ════════════ */
+var Hub = (function () {
+  var tabs = {}, current = null;
+  var navs = $$('[role=tab][data-tab]');
+  function register(name, hooks) { tabs[name] = hooks || {}; }
+  function show(name) {
+    if (!tabs[name] || name === current) return;
+    var prev = current; current = name;
+    navs.forEach(function (b) {
+      var on = b.dataset.tab === name;
+      b.classList.toggle('is-active', on); b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
+    });
+    $$('.panel').forEach(function (p) {
+      var on = p.id === 'tab-' + name;
+      p.classList.toggle('is-active', on); p.setAttribute('aria-hidden', String(!on));
+      if (on) p.scrollTop = 0;
+    });
+    if (prev && tabs[prev].onHide) tabs[prev].onHide();
+    if (tabs[name].onShow) tabs[name].onShow();
+    try { history.replaceState(null, '', '#' + name); } catch (e) {}
+  }
+  navs.forEach(function (b, i) {
+    b.addEventListener('click', function (e) { show(b.dataset.tab); if (e.detail > 0) b.blur(); /* после касания стрелки управляют игрой, а не меню */ });
+    b.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      e.preventDefault();
+      var n = navs[(i + (e.key === 'ArrowDown' ? 1 : -1) + navs.length) % navs.length];
+      n.focus(); show(n.dataset.tab);
+    });
+  });
+  return { register: register, show: show, current: function () { return current; } };
+})();
+
+/* ════════════ 1. ГЕОМЕТРИЯ ════════════ */
+(function geometry() {
+  var active = false, raf = 0;
+
+  /* — 3D: Three.js, при недоступности WebGL показываем CSS-куб — */
+  var scene = null;
+  var solidCanvas = $('#solid-canvas');
+  try { scene = window.GeometryScene ? window.GeometryScene.create(solidCanvas) : null; } catch (e) { scene = null; }
+  var SOL = window.GeometryScene ? window.GeometryScene.SOLIDS : {
+    cube: { name: 'Куб', V: 8, E: 12, F: 6, faces: 'квадраты' }, tetra: { name: 'Тетраэдр', V: 4, E: 6, F: 4, faces: 'треугольники' },
+    octa: { name: 'Октаэдр', V: 6, E: 12, F: 8, faces: 'треугольники' }, dodeca: { name: 'Додекаэдр', V: 20, E: 30, F: 12, faces: 'пятиугольники' },
+    icosa: { name: 'Икосаэдр', V: 12, E: 30, F: 20, faces: 'треугольники' }
+  };
+  if (!scene) { solidCanvas.style.display = 'none'; $('#solid-fallback').classList.remove('hidden'); }
+  function pickSolid(key) {
+    var d = SOL[key]; if (!d) return;
+    if (scene) scene.setSolid(key);
+    $$('#solid-pills .pill').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.solid === key)); });
+    $('#solid-name').textContent = d.name; $('#solid-faces').textContent = d.faces;
+    $('#euler-v').textContent = d.V; $('#euler-e').textContent = d.E; $('#euler-f').textContent = d.F;
+    var chk = d.V - d.E + d.F;
+    $('#euler-line').innerHTML = d.V + ' − ' + d.E + ' + ' + d.F + ' = <b>' + chk + '</b> ' + (chk === 2 ? '✓' : '');
+  }
+  $$('#solid-pills .pill').forEach(function (b) { b.addEventListener('click', function () { pickSolid(b.dataset.solid); }); });
+  pickSolid('cube');
+
+  /* — Пифагор — */
+  var P = fluid($('#pyth-canvas')), pa = $('#pyth-a'), pb = $('#pyth-b');
+  function f1(v) { return (+v).toFixed(1); }
+  function drawPyth() {
+    var ctx = P.ctx, w = P.w, h = P.h; if (!w || !h) return;
+    var a = +pa.value, b = +pb.value, c = Math.hypot(a, b);
+    pa.nextElementSibling.textContent = f1(a); pb.nextElementSibling.textContent = f1(b);
+    ctx.clearRect(0, 0, w, h);
+    var m = 14, s = Math.min((w - 2 * m) / (a + 2 * b), (h - 2 * m) / (2 * a + b));
+    var ox = m + (w - 2 * m - s * (a + 2 * b)) / 2 + s * b;
+    var oy = m + (h - 2 * m - s * (2 * a + b)) / 2 + s * (a + b);
+    function X(x) { return ox + x * s; } function Y(y) { return oy - y * s; }
+    function poly(pts, fill, stroke) {
+      ctx.beginPath(); pts.forEach(function (p, i) { i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1])); }); ctx.closePath();
+      ctx.fillStyle = fill; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = stroke; ctx.stroke();
+    }
+    poly([[0, 0], [a, 0], [a, -a], [0, -a]], 'rgba(34,211,238,.20)', '#22d3ee');
+    poly([[0, 0], [0, b], [-b, b], [-b, 0]], 'rgba(244,114,182,.20)', '#f472b6');
+    poly([[a, 0], [0, b], [b, a + b], [a + b, a]], 'rgba(167,139,250,.24)', '#a78bfa');
+    poly([[0, 0], [a, 0], [0, b]], 'rgba(255,255,255,.10)', '#f8fafc');
+    var q = Math.min(a, b) * 0.22; /* прямой угол */
+    ctx.beginPath(); ctx.moveTo(X(q), Y(0)); ctx.lineTo(X(q), Y(q)); ctx.lineTo(X(0), Y(q)); ctx.strokeStyle = '#f8fafc'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '700 13px ui-monospace, Menlo, monospace';
+    function lab(txt, x, y, col, side) { if (side * s > 40) { ctx.fillStyle = col; ctx.fillText(txt, X(x), Y(y)); } }
+    lab('a² = ' + (a * a).toFixed(1), a / 2, -a / 2, '#67e8f9', a);
+    lab('b² = ' + (b * b).toFixed(1), -b / 2, b / 2, '#f9a8d4', b);
+    lab('c² = ' + (c * c).toFixed(1), (a + b) / 2, (a + b) / 2, '#c4b5fd', c);
+    ctx.font = '600 12px ui-monospace, Menlo, monospace'; ctx.fillStyle = '#e2e8f0';
+    ctx.fillText('a', X(a / 2), Y(0) - 9); ctx.fillText('b', X(0) + 10, Y(b / 2));
+    ctx.fillText('c', X(a / 2) + 11, Y(b / 2) - 9);
+    $('#pyth-out').innerHTML = '<b>a² + b² = c²</b> → ' + (a * a).toFixed(1) + ' + ' + (b * b).toFixed(1) + ' = ' + (c * c).toFixed(1) + ' → <b>c = ' + c.toFixed(2) + '</b>';
+  }
+  [pa, pb].forEach(function (r) { r.addEventListener('input', function () { setFill(r); P.dirty = true; }); setFill(r); });
+
+  /* — График функции — */
+  var G = fluid($('#graph-canvas')), gType = 'sin', hoverX = null;
+  var gA = $('#g-a'), gB = $('#g-b'), gC = $('#g-c');
+  var TYPES = {
+    sin: { eq: '<i>y</i> = <i>a</i>·sin(<i>b</i>·<i>x</i> + <i>c</i>)',
+      params: [['a', 0.5, 4, 0.1, 2], ['b', 0.25, 3, 0.05, 1], ['c', -3.14, 3.14, 0.05, 0]],
+      f: function (x, p) { return p.a * Math.sin(p.b * x + p.c); } },
+    quad: { eq: '<i>y</i> = <i>a</i>·<i>x</i><sup>2</sup> + <i>b</i>·<i>x</i> + <i>c</i>',
+      params: [['a', -2, 2, 0.05, 0.5], ['b', -4, 4, 0.1, -1], ['c', -5, 5, 0.1, -2]],
+      f: function (x, p) { return p.a * x * x + p.b * x + p.c; } },
+    exp: { eq: '<i>y</i> = <i>a</i>·<i>e</i><sup><i>b</i>·<i>x</i></sup> + <i>c</i>',
+      params: [['a', -3, 3, 0.1, 1], ['b', -1.5, 1.5, 0.05, 0.4], ['c', -4, 4, 0.1, 0]],
+      f: function (x, p) { return p.a * Math.exp(p.b * x) + p.c; } }
+  };
+  function setType(t) {
+    gType = t; var T = TYPES[t];
+    $$('#graph-types .pill').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.type === t)); });
+    [gA, gB, gC].forEach(function (r, i) {
+      var d = T.params[i]; r.min = d[1]; r.max = d[2]; r.step = d[3]; r.value = d[4];
+      $('#g-' + 'abc'[i] + '-k').textContent = d[0]; setFill(r);
+    });
+    $('#graph-eq').innerHTML = T.eq; G.dirty = true; hoverX = null;
+  }
+  $$('#graph-types .pill').forEach(function (b) { b.addEventListener('click', function () { setType(b.dataset.type); }); });
+  [gA, gB, gC].forEach(function (r) { r.addEventListener('input', function () { setFill(r); G.dirty = true; }); });
+  function gPoint(ev) { var r = G.canvas.getBoundingClientRect(); hoverX = ((ev.clientX - r.left) / r.width - 0.5) * 16; G.dirty = true; }
+  G.canvas.addEventListener('pointerdown', gPoint);
+  G.canvas.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse' || e.buttons) gPoint(e); });
+  G.canvas.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hoverX = null; G.dirty = true; } });
+  function fmt(v) { return (Math.abs(v) < 0.005 ? 0 : v).toFixed(2); }
+  function drawGraph() {
+    var ctx = G.ctx, w = G.w, h = G.h; if (!w || !h) return;
+    var T = TYPES[gType], p = { a: +gA.value, b: +gB.value, c: +gC.value };
+    $('#g-a-v').textContent = fmt(p.a); $('#g-b-v').textContent = fmt(p.b); $('#g-c-v').textContent = fmt(p.c);
+    var xr = 16, yr = xr * h / w, sx = w / xr, cx = w / 2, cy = h / 2;
+    function X(x) { return cx + x * sx; } function Y(y) { return cy - y * sx; }
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(148,163,184,.10)'; ctx.beginPath();
+    for (var gx = -8; gx <= 8; gx++) { ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), h); }
+    for (var gy = -Math.floor(yr / 2); gy <= Math.floor(yr / 2); gy++) { ctx.moveTo(0, Y(gy)); ctx.lineTo(w, Y(gy)); }
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(203,213,225,.55)'; ctx.lineWidth = 1.5; ctx.beginPath();
+    ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+    ctx.fillStyle = 'rgba(148,163,184,.8)'; ctx.font = '11px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (var tx = -6; tx <= 6; tx += 2) if (tx) ctx.fillText(tx, X(tx), cy + 4);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    for (var ty = -Math.floor(yr / 2); ty <= Math.floor(yr / 2); ty++) if (ty && ty % 2 === 0) ctx.fillText(ty, cx + 5, Y(ty));
+    /* вспомогательные линии */
+    ctx.setLineDash([5, 5]); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(244,114,182,.5)';
+    if (gType === 'sin') { [p.a, -p.a].forEach(function (v) { ctx.beginPath(); ctx.moveTo(0, Y(v)); ctx.lineTo(w, Y(v)); ctx.stroke(); }); }
+    if (gType === 'exp') { ctx.beginPath(); ctx.moveTo(0, Y(p.c)); ctx.lineTo(w, Y(p.c)); ctx.stroke(); }
+    if (gType === 'quad' && p.a !== 0) { var vx = -p.b / (2 * p.a); ctx.beginPath(); ctx.moveTo(X(vx), 0); ctx.lineTo(X(vx), h); ctx.stroke(); }
+    ctx.setLineDash([]);
+    /* кривая */
+    var grad = ctx.createLinearGradient(0, 0, w, 0); grad.addColorStop(0, '#22d3ee'); grad.addColorStop(1, '#a78bfa');
+    ctx.strokeStyle = grad; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.shadowColor = 'rgba(34,211,238,.6)'; ctx.shadowBlur = 10;
+    ctx.beginPath(); var pen = false;
+    for (var px = 0; px <= w; px += 2) {
+      var x = (px - cx) / sx, y = T.f(x, p), py = Y(y);
+      if (!isFinite(py) || py < -h || py > 2 * h) { pen = false; continue; }
+      if (pen) ctx.lineTo(px, py); else { ctx.moveTo(px, py); pen = true; }
+    }
+    ctx.stroke(); ctx.shadowBlur = 0;
+    /* особые точки + подпись */
+    var out = '';
+    if (gType === 'sin') {
+      out = 'период <b>T = 2π/b = ' + (TAU / p.b).toFixed(2) + '</b> · амплитуда <b>|a| = ' + Math.abs(p.a).toFixed(2) + '</b>';
+    } else if (gType === 'quad') {
+      var D = p.b * p.b - 4 * p.a * p.c;
+      if (Math.abs(p.a) < 1e-9) out = 'при <b>a = 0</b> это прямая';
+      else {
+        var vxx = -p.b / (2 * p.a), vyy = T.f(vxx, p);
+        ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(X(vxx), Y(vyy), 5, 0, TAU); ctx.fill();
+        if (D >= 0) {
+          var r1 = (-p.b - Math.sqrt(D)) / (2 * p.a), r2 = (-p.b + Math.sqrt(D)) / (2 * p.a);
+          [r1, r2].forEach(function (r) { ctx.fillStyle = '#a3e635'; ctx.beginPath(); ctx.arc(X(r), cy, 5.5, 0, TAU); ctx.fill(); });
+          out = '<b>D = ' + D.toFixed(2) + '</b> → корни <b>x₁ = ' + Math.min(r1, r2).toFixed(2) + '</b>, <b>x₂ = ' + Math.max(r1, r2).toFixed(2) + '</b>';
+        } else out = '<b>D = ' + D.toFixed(2) + ' &lt; 0</b> → вещественных корней нет';
+      }
+    } else {
+      out = 'асимптота <b>y = ' + p.c.toFixed(2) + '</b> · <b>y(0) = ' + (p.a + p.c).toFixed(2) + '</b>';
+    }
+    if (hoverX !== null) {
+      var hy = T.f(hoverX, p);
+      if (isFinite(hy)) {
+        ctx.fillStyle = '#fff'; ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(X(hoverX), Y(hy), 6, 0, TAU); ctx.fill(); ctx.stroke();
+        ctx.setLineDash([3, 4]); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.beginPath(); ctx.moveTo(X(hoverX), cy); ctx.lineTo(X(hoverX), Y(hy)); ctx.stroke(); ctx.setLineDash([]);
+        out += '<br>точка: <b>x = ' + hoverX.toFixed(2) + '</b>, <b>y = ' + hy.toFixed(2) + '</b>';
+      }
+    }
+    $('#graph-out').innerHTML = out;
+  }
+
+  /* — Окружность и шар — */
+  var cr = $('#circ-r');
+  function updCirc() {
+    var r = +cr.value; setFill(cr); $('#circ-r-v').textContent = f1(r);
+    var d = 22 + r * 12 + 'px';
+    [$('#circ-vis'), $('#sph-vis')].forEach(function (el) { el.style.width = d; el.style.height = d; });
+    var rows = [['C = 2πr', TAU * r], ['S = πr²', Math.PI * r * r], ['S<sub>шара</sub> = 4πr²', 4 * Math.PI * r * r], ['V = ⁴⁄₃πr³', 4 / 3 * Math.PI * r * r * r]];
+    $('#circ-out').innerHTML = rows.map(function (x) { return '<div class="readout"><span class="text-slate-400">' + x[0] + '</span><br><b>' + x[1].toFixed(2) + '</b></div>'; }).join('');
+  }
+  cr.addEventListener('input', updCirc); updCirc();
+
+  /* — Единичная окружность — */
+  var U = fluid($('#unit-canvas')), theta = 0.9, auto = true, lastT = 0, outTick = 0, drag = false;
+  function ug() { var R = Math.min(U.h * 0.36, U.w * 0.2); return { R: R, cx: R + 38, cy: U.h / 2, x0: R * 2 + 100, x1: U.w - 18 }; }
+  function setAuto(v) { auto = v; var b = $('#unit-play'); b.setAttribute('aria-pressed', String(v)); b.textContent = v ? 'Пауза' : 'Пуск'; }
+  function uPoint(ev) {
+    var g = ug(), r = U.canvas.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+    theta = (Math.atan2(g.cy - y, x - g.cx) + TAU) % TAU; setAuto(false);
+  }
+  U.canvas.addEventListener('pointerdown', function (e) { var g = ug(), r = U.canvas.getBoundingClientRect(); if (e.clientX - r.left < g.x0 - 24) { drag = true; try { U.canvas.setPointerCapture(e.pointerId); } catch (_) {} uPoint(e); } });
+  U.canvas.addEventListener('pointermove', function (e) { if (drag) uPoint(e); });
+  U.canvas.addEventListener('pointerup', function () { drag = false; });
+  U.canvas.addEventListener('pointercancel', function () { drag = false; });
+  $('#unit-play').addEventListener('click', function () { setAuto(!auto); });
+  function drawUnit() {
+    var ctx = U.ctx, w = U.w, h = U.h; if (!w || !h) return;
+    var g = ug(), R = g.R, cx = g.cx, cy = g.cy, th = theta, c = Math.cos(th), s = Math.sin(th);
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(148,163,184,.35)';
+    ctx.beginPath(); ctx.moveTo(cx - R - 12, cy); ctx.lineTo(cx + R + 12, cy); ctx.moveTo(cx, cy - R - 12); ctx.lineTo(cx, cy + R + 12); ctx.stroke();
+    ctx.strokeStyle = 'rgba(203,213,225,.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke();
+    ctx.fillStyle = 'rgba(167,139,250,.22)'; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R * 0.3, 0, -th, true); ctx.closePath(); ctx.fill();
+    var px = cx + R * c, py = cy - R * s;
+    ctx.lineWidth = 2.5; ctx.strokeStyle = '#f472b6'; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, cy); ctx.stroke();
+    ctx.strokeStyle = '#22d3ee'; ctx.beginPath(); ctx.moveTo(px, cy); ctx.lineTo(px, py); ctx.stroke();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+    /* синусоида */
+    var wx0 = g.x0, ww = g.x1 - g.x0;
+    ctx.strokeStyle = 'rgba(148,163,184,.35)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(wx0, cy); ctx.lineTo(g.x1, cy); ctx.moveTo(wx0, cy - R - 12); ctx.lineTo(wx0, cy + R + 12); ctx.stroke();
+    ctx.fillStyle = 'rgba(148,163,184,.8)'; ctx.font = '11px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    [['π/2', 0.25], ['π', 0.5], ['3π/2', 0.75], ['2π', 1]].forEach(function (t) { ctx.fillText(t[0], wx0 + t[1] * ww, cy + 5); });
+    ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var i = 0; i <= 120; i++) { var a = i / 120 * TAU, x = wx0 + a / TAU * ww, y = cy - R * Math.sin(a); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+    ctx.strokeStyle = 'rgba(103,232,249,.28)'; ctx.stroke();
+    ctx.beginPath();
+    var n = Math.max(2, Math.round(th / TAU * 120));
+    for (var j = 0; j <= n; j++) { var a2 = Math.min(th, j / n * th), x2 = wx0 + a2 / TAU * ww, y2 = cy - R * Math.sin(a2); j ? ctx.lineTo(x2, y2) : ctx.moveTo(x2, y2); }
+    ctx.strokeStyle = '#22d3ee'; ctx.stroke();
+    var dx = wx0 + th / TAU * ww;
+    ctx.setLineDash([4, 4]); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,255,255,.45)'; ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(dx, py); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(px, py, 7, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(dx, py, 5, 0, TAU); ctx.fillStyle = '#22d3ee'; ctx.fill();
+    if (++outTick % 4 === 0 || !auto) {
+      var deg = th * 180 / Math.PI, tn = Math.abs(c) < 0.01 ? '∞' : (s / c).toFixed(2);
+      $('#unit-out').innerHTML = 'θ = <b>' + deg.toFixed(0) + '°</b> · sin = <b>' + s.toFixed(2) + '</b> · cos = <b>' + c.toFixed(2) + '</b> · tg = <b>' + tn + '</b>';
+    }
+  }
+
+  /* — Формулы — */
+  $$('#formula-wall .formula-tile').forEach(function (t) {
+    t.addEventListener('click', function () { var o = !t.classList.contains('is-open'); t.classList.toggle('is-open', o); t.setAttribute('aria-expanded', String(o)); });
+  });
+
+  /* — Цикл отрисовки (только пока вкладка открыта) — */
+  function loop(now) {
+    if (!active) return;
+    raf = requestAnimationFrame(loop);
+    var dt = Math.min(0.05, (now - (lastT || now)) / 1000); lastT = now;
+    if (auto && !drag) theta = (theta + dt * 0.9) % TAU;
+    if (P.dirty) { P.dirty = false; drawPyth(); }
+    if (G.dirty) { G.dirty = false; drawGraph(); }
+    drawUnit();
+  }
+  setType('sin');
+  Hub.register('geometry', {
+    onShow: function () { active = true; lastT = 0; P.dirty = G.dirty = true; if (scene) scene.start(); raf = requestAnimationFrame(loop); },
+    onHide: function () { active = false; cancelAnimationFrame(raf); if (scene) scene.stop(); }
+  });
+})();
+
+/* ════════════ 2. ТЕТРИС ════════════ */
+var TetrisAPI = (function tetris() {
+  var COLS = 10, ROWS = 20, LW = 300, LH = 600, CELL = 30;
+  var TYPES = ['I', 'O', 'T', 'S', 'Z', 'J', 'L'];
+  var SHAPES = {
+    I: [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
+    O: [[1, 1], [1, 1]],
+    T: [[0, 1, 0], [1, 1, 1], [0, 0, 0]],
+    S: [[0, 1, 1], [1, 1, 0], [0, 0, 0]],
+    Z: [[1, 1, 0], [0, 1, 1], [0, 0, 0]],
+    J: [[1, 0, 0], [1, 1, 1], [0, 0, 0]],
+    L: [[0, 0, 1], [1, 1, 1], [0, 0, 0]]
+  };
+  var COLORS = { I: '#22d3ee', O: '#fbbf24', T: '#a78bfa', S: '#4ade80', Z: '#fb7185', J: '#60a5fa', L: '#fb923c' };
+  var KICKS = [[0, 0], [-1, 0], [1, 0], [-2, 0], [2, 0], [0, -1], [-1, -1], [1, -1]];
+  var LOCK_MS = 500, DAS = 160, ARR = 50, SOFT = 45;
+
+  var cv = $('#t-board'), ctx = fitCanvas(cv, LW, LH, function () { draw(); });
+  var holdCtx = fitCanvas($('#t-hold'), 96, 72, function () { drawHold(); });
+  var nextCtx = fitCanvas($('#t-next'), 96, 210, function () { drawNext(); });
+  var ov = $('#t-overlay'), ovTitle = $('#t-ov-title'), ovText = $('#t-ov-text'), ovBtn = $('#t-ov-btn');
+
+  var board, cur, holdT, canHold, queue, bag, score, lines, level, best = store.get('hub.tetris.best', 0);
+  var state = 'ready', dropAcc, lockT, lockResets, clearRows, clearT, flashT = 0, lastTs = 0, raf = 0;
+  var held = {}; /* удерживаемые действия для автоповтора */
+
+  function emptyBoard() { var b = []; for (var y = 0; y < ROWS; y++) b.push(new Array(COLS).fill(null)); return b; }
+  function refill() { var a = TYPES.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } bag = bag.concat(a); }
+  function takeType() { if (bag.length < 7) refill(); return bag.shift(); }
+  function ensureQueue() { while (queue.length < 4) queue.push(takeType()); }
+  function mk(type) { var m = SHAPES[type].map(function (r) { return r.slice(); }); return { type: type, m: m, x: Math.floor((COLS - m.length) / 2), y: type === 'I' ? -1 : 0 }; }
+  function collide(m, x, y) {
+    for (var r = 0; r < m.length; r++) for (var c = 0; c < m[r].length; c++) {
+      if (!m[r][c]) continue;
+      var bx = x + c, by = y + r;
+      if (bx < 0 || bx >= COLS || by >= ROWS) return true;
+      if (by >= 0 && board[by][bx]) return true;
+    }
+    return false;
+  }
+  function rotM(m, dir) {
+    var n = m.length, o = [];
+    for (var i = 0; i < n; i++) o.push(new Array(n).fill(0));
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) { if (dir > 0) o[c][n - 1 - r] = m[r][c]; else o[n - 1 - c][r] = m[r][c]; }
+    return o;
+  }
+  function dropMs() { return Math.max(70, 800 * Math.pow(0.85, level - 1)); }
+
+  function spawn(type) {
+    cur = mk(type || (ensureQueue(), queue.shift())); ensureQueue();
+    dropAcc = 0; lockT = 0; lockResets = 0;
+    if (collide(cur.m, cur.x, cur.y)) { gameOver(); return false; }
+    drawNext(); return true;
+  }
+  function touchLock() { if (collide(cur.m, cur.x, cur.y + 1) && lockResets < 15) { lockT = 0; lockResets++; } }
+  function move(dx) { if (state !== 'play') return false; if (!collide(cur.m, cur.x + dx, cur.y)) { cur.x += dx; touchLock(); return true; } return false; }
+  function stepDown(soft) {
+    if (state !== 'play') return false;
+    if (!collide(cur.m, cur.x, cur.y + 1)) { cur.y++; lockT = 0; if (soft) addScore(1); return true; }
+    return false;
+  }
+  function rotate(dir) {
+    if (state !== 'play' || cur.type === 'O') return false;
+    var m = rotM(cur.m, dir);
+    for (var i = 0; i < KICKS.length; i++) {
+      var k = KICKS[i];
+      if (!collide(m, cur.x + k[0], cur.y + k[1])) { cur.m = m; cur.x += k[0]; cur.y += k[1]; touchLock(); return true; }
+    }
+    return false;
+  }
+  function ghostY() { var y = cur.y; while (!collide(cur.m, cur.x, y + 1)) y++; return y; }
+  function hardDrop() {
+    if (state !== 'play') return;
+    var gy = ghostY(); addScore((gy - cur.y) * 2); cur.y = gy; lock();
+  }
+  function doHold() {
+    if (state !== 'play' || !canHold) return;
+    var t = cur.type;
+    if (holdT) { var h = holdT; holdT = t; spawn(h); } else { holdT = t; spawn(); }
+    canHold = false; drawHold();
+  }
+  function addScore(n) { score += n; $('#t-score').textContent = score; }
+  function lock() {
+    var over = false;
+    for (var r = 0; r < cur.m.length; r++) for (var c = 0; c < cur.m[r].length; c++) {
+      if (!cur.m[r][c]) continue;
+      var by = cur.y + r, bx = cur.x + c;
+      if (by < 0) over = true; else board[by][bx] = cur.type;
+    }
+    canHold = true;
+    if (over) { gameOver(); return; }
+    var full = [];
+    for (var y = 0; y < ROWS; y++) if (board[y].every(Boolean)) full.push(y);
+    if (full.length) { clearRows = full; clearT = 0; state = 'clear'; cur = null; }
+    else spawn();
+  }
+  function finishClear() {
+    var n = clearRows.length;
+    board = board.filter(function (_, y) { return clearRows.indexOf(y) < 0; });
+    while (board.length < ROWS) board.unshift(new Array(COLS).fill(null));
+    addScore([0, 100, 300, 500, 800][n] * level);
+    lines += n; level = Math.min(20, 1 + Math.floor(lines / 10));
+    $('#t-lines').textContent = lines; $('#t-level').textContent = level;
+    clearRows = null; state = 'play'; spawn();
+  }
+  function gameOver() {
+    state = 'over'; held = {};
+    if (score > best) { best = score; store.set('hub.tetris.best', best); }
+    $('#t-best').textContent = best;
+    showOverlay('Игра окончена', 'Очки: ' + score + ' · Линии: ' + lines + (score && score >= best ? ' · новый рекорд!' : ''), 'Играть снова');
+    draw();
+  }
+  function showOverlay(t, txt, btn) { ovTitle.textContent = t; ovText.textContent = txt; ovBtn.textContent = btn; ov.hidden = false; }
+
+  function reset() {
+    board = emptyBoard(); bag = []; queue = []; holdT = null; canHold = true;
+    score = 0; lines = 0; level = 1; clearRows = null; held = {};
+    $('#t-score').textContent = 0; $('#t-lines').textContent = 0; $('#t-level').textContent = 1; $('#t-best').textContent = best;
+    cur = null; drawHold();
+  }
+  function start() {
+    reset(); state = 'play'; ov.hidden = true; spawn(); lastTs = 0;
+    cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
+  }
+  function pause() { if (state === 'play') { state = 'paused'; held = {}; showOverlay('Пауза', 'Нажмите, чтобы продолжить', 'Продолжить'); draw(); } }
+  function resume() { if (state === 'paused') { state = 'play'; ov.hidden = true; lastTs = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); } }
+
+  /* автоповтор для движения (клавиатура и сенсорные кнопки) */
+  var ACT = {
+    left: { fn: function () { move(-1); }, das: DAS, arr: ARR },
+    right: { fn: function () { move(1); }, das: DAS, arr: ARR },
+    down: { fn: function () { stepDown(true); }, das: 0, arr: SOFT }
+  };
+  function press(a) {
+    if (state !== 'play' || held[a]) return;
+    if (ACT[a]) { held[a] = { t: 0, rep: false }; ACT[a].fn(); }
+  }
+  function release(a) { delete held[a]; }
+  function updateHeld(dt) {
+    for (var a in held) {
+      var h = held[a], A = ACT[a]; h.t += dt * 1000;
+      if (!h.rep) { if (h.t >= A.das) { h.rep = true; h.t = 0; A.fn(); } }
+      else while (h.t >= A.arr) { h.t -= A.arr; A.fn(); }
+    }
+  }
+
+  function update(dt) {
+    if (state === 'clear') { clearT += dt * 1000; flashT += dt; if (clearT >= 280) finishClear(); return; }
+    if (state !== 'play' || !cur) return;
+    updateHeld(dt);
+    if (state !== 'play' || !cur) return;
+    dropAcc += dt * 1000;
+    var ms = dropMs();
+    while (dropAcc >= ms) { dropAcc -= ms; if (!stepDown(false)) { dropAcc = 0; break; } }
+    if (collide(cur.m, cur.x, cur.y + 1)) { lockT += dt * 1000; if (lockT >= LOCK_MS) lock(); }
+    else lockT = 0;
+  }
+  function frame(ts) {
+    if (state !== 'play' && state !== 'clear') return;
+    raf = requestAnimationFrame(frame);
+    var dt = lastTs ? Math.min(0.05, (ts - lastTs) / 1000) : 0; lastTs = ts;
+    update(dt); draw();
+  }
+
+  /* — Отрисовка — */
+  function cell(c, x, y, s, color, a) {
+    c.globalAlpha = a == null ? 1 : a;
+    c.fillStyle = color; c.fillRect(x + 1, y + 1, s - 2, s - 2);
+    c.fillStyle = 'rgba(255,255,255,.30)'; c.fillRect(x + 1, y + 1, s - 2, s * 0.12); c.fillRect(x + 1, y + 1, s * 0.12, s - 2);
+    c.fillStyle = 'rgba(0,0,0,.30)'; c.fillRect(x + 1, y + s - 1 - s * 0.12, s - 2, s * 0.12); c.fillRect(x + s - 1 - s * 0.12, y + 1, s * 0.12, s - 2);
+    c.globalAlpha = 1;
+  }
+  function draw() {
+    var c = ctx; c.clearRect(0, 0, LW, LH);
+    c.fillStyle = '#050912'; c.fillRect(0, 0, LW, LH);
+    c.strokeStyle = 'rgba(148,163,184,.07)'; c.lineWidth = 1; c.beginPath();
+    for (var i = 1; i < COLS; i++) { c.moveTo(i * CELL + .5, 0); c.lineTo(i * CELL + .5, LH); }
+    for (var j = 1; j < ROWS; j++) { c.moveTo(0, j * CELL + .5); c.lineTo(LW, j * CELL + .5); }
+    c.stroke();
+    if (!board) return;
+    for (var y = 0; y < ROWS; y++) for (var x = 0; x < COLS; x++) if (board[y][x]) cell(c, x * CELL, y * CELL, CELL, COLORS[board[y][x]]);
+    if (cur && state !== 'over') {
+      var gy = ghostY();
+      for (var r = 0; r < cur.m.length; r++) for (var q = 0; q < cur.m[r].length; q++) if (cur.m[r][q]) {
+        var gx = (cur.x + q) * CELL, gyy = (gy + r) * CELL;
+        if (gy + r >= 0) { c.strokeStyle = COLORS[cur.type]; c.globalAlpha = .55; c.lineWidth = 2; c.strokeRect(gx + 2, gyy + 2, CELL - 4, CELL - 4); c.globalAlpha = 1; }
+      }
+      for (var r2 = 0; r2 < cur.m.length; r2++) for (var q2 = 0; q2 < cur.m[r2].length; q2++) if (cur.m[r2][q2] && cur.y + r2 >= 0) cell(c, (cur.x + q2) * CELL, (cur.y + r2) * CELL, CELL, COLORS[cur.type]);
+    }
+    if (clearRows) {
+      var a = .35 + .45 * Math.abs(Math.sin(clearT / 28)); c.fillStyle = 'rgba(255,255,255,' + a + ')';
+      clearRows.forEach(function (ry) { c.fillRect(0, ry * CELL, LW, CELL); });
+    }
+  }
+  function mini(c, type, ox, oy, w, h, s) {
+    if (!type) return;
+    var m = SHAPES[type], minC = 9, maxC = -1, minR = 9, maxR = -1;
+    for (var r = 0; r < m.length; r++) for (var q = 0; q < m[r].length; q++) if (m[r][q]) { minC = Math.min(minC, q); maxC = Math.max(maxC, q); minR = Math.min(minR, r); maxR = Math.max(maxR, r); }
+    var pw = (maxC - minC + 1) * s, ph = (maxR - minR + 1) * s, x0 = ox + (w - pw) / 2, y0 = oy + (h - ph) / 2;
+    for (var r2 = minR; r2 <= maxR; r2++) for (var q2 = minC; q2 <= maxC; q2++) if (m[r2][q2]) cell(c, x0 + (q2 - minC) * s, y0 + (r2 - minR) * s, s, COLORS[type]);
+  }
+  function drawHold() { holdCtx.clearRect(0, 0, 96, 72); if (holdT) { holdCtx.globalAlpha = canHold ? 1 : .4; mini(holdCtx, holdT, 0, 0, 96, 72, 20); holdCtx.globalAlpha = 1; } }
+  function drawNext() { nextCtx.clearRect(0, 0, 96, 210); if (queue) for (var i = 0; i < 3 && i < queue.length; i++) mini(nextCtx, queue[i], 0, i * 70, 96, 70, 20); }
+
+  /* — Управление — */
+  var KEYMAP = { ArrowLeft: 'left', a: 'left', A: 'left', ArrowRight: 'right', d: 'right', D: 'right', ArrowDown: 'down', s: 'down', S: 'down' };
+  function onKey(e, down) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return; /* системные сочетания не трогаем */
+    var k = e.key, a = KEYMAP[k];
+    if (a) { e.preventDefault(); if (down) { if (!e.repeat) press(a); } else release(a); return; }
+    if (!down) return;
+    var handled = true;
+    if (k === 'ArrowUp' || k === 'w' || k === 'W' || k === 'x' || k === 'X') { if (!e.repeat) rotate(1); }
+    else if (k === 'z' || k === 'Z') { if (!e.repeat) rotate(-1); }
+    else if (k === ' ' || k === 'Spacebar') {
+      if (state === 'play') { if (!e.repeat) hardDrop(); } else if (state === 'paused') resume(); else if (state === 'ready' || state === 'over') start();
+    }
+    else if (k === 'c' || k === 'C' || k === 'Shift') { if (!e.repeat) doHold(); }
+    else if (k === 'p' || k === 'P' || k === 'Escape') { state === 'play' ? pause() : resume(); }
+    else if (k === 'Enter') { if (state === 'ready' || state === 'over') start(); else if (state === 'paused') resume(); }
+    else handled = false;
+    if (handled) e.preventDefault();
+  }
+
+  function bindBtn(id, a, once) {
+    var el = $(id), active = false;
+    function dn(e) { e.preventDefault(); if (active) return; active = true; el.classList.add('is-down'); try { el.setPointerCapture(e.pointerId); } catch (_) {} once ? once() : press(a); }
+    function up() { if (!active) return; active = false; el.classList.remove('is-down'); if (a) release(a); }
+    el.addEventListener('pointerdown', dn); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up); el.addEventListener('lostpointercapture', up);
+    el.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  }
+  bindBtn('#t-left', 'left'); bindBtn('#t-right', 'right'); bindBtn('#t-down', 'down');
+  bindBtn('#t-rot', null, function () { rotate(1); });
+  bindBtn('#t-drop', null, function () { hardDrop(); });
+  bindBtn('#t-holdbtn', null, function () { doHold(); });
+  $('#t-pause').addEventListener('click', function () { state === 'play' ? pause() : resume(); });
+  $('#t-restart').addEventListener('click', start);
+  ovBtn.addEventListener('click', function () { if (state === 'paused') resume(); else start(); });
+
+  /* жесты по полю: свайп ← → двигает, свайп вниз ускоряет/сбрасывает, тап — поворот */
+  (function gestures() {
+    var el = cv.parentNode, g = null;
+    el.addEventListener('pointerdown', function (e) {
+      if (state !== 'play' || e.target.closest('.overlay')) return;
+      g = { x: e.clientX, y: e.clientY, ax: e.clientX, ay: e.clientY, t: performance.now(), moved: false };
+      try { el.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    el.addEventListener('pointermove', function (e) {
+      if (!g || state !== 'play') return;
+      var cs = el.clientWidth / COLS;
+      while (e.clientX - g.ax > cs * 0.9) { move(1); g.ax += cs * 0.9; g.moved = true; }
+      while (g.ax - e.clientX > cs * 0.9) { move(-1); g.ax -= cs * 0.9; g.moved = true; }
+      while (e.clientY - g.ay > cs * 1.1) { stepDown(true); g.ay += cs * 1.1; g.moved = true; }
+    });
+    function end(e) {
+      if (!g) return; var dt = performance.now() - g.t, dx = e.clientX - g.x, dy = e.clientY - g.y, was = g; g = null;
+      if (state !== 'play') return;
+      if (!was.moved && Math.hypot(dx, dy) < 10 && dt < 300) rotate(1);
+      else if (dy > 90 && dt < 220 && Math.abs(dx) < dy * 0.6) hardDrop();
+    }
+    el.addEventListener('pointerup', end); el.addEventListener('pointercancel', function () { g = null; });
+  })();
+
+  reset(); draw();
+  Hub.register('tetris', { onShow: function () { draw(); drawHold(); drawNext(); }, onHide: pause });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); });
+  window.addEventListener('blur', function () { held = {}; });
+
+  return {
+    onKey: onKey, onKeyUp: function (e) { onKey(e, false); },
+    debug: {
+      snapshot: function () { return { state: state, score: score, lines: lines, level: level, cur: cur && { type: cur.type, x: cur.x, y: cur.y }, board: board && board.map(function (r) { return r.map(function (v) { return v ? 1 : 0; }); }) }; },
+      setBoard: function (rows) { board = rows.map(function (r) { return r.map(function (v) { return v ? 'I' : null; }); }); },
+      spawn: function (t) { spawn(t); }, start: start, step: function (ms) { update(ms / 1000); }, hardDrop: hardDrop, move: move, rotate: rotate, pause: pause
+    }
+  };
+})();
+
+/* ════════════ 3. ЗМЕЙКА ════════════ */
+var SnakeAPI = (function snakeGame() {
+  var N = 20, CS = 24, L = N * CS;
+  var cv = $('#s-board'), ctx = fitCanvas(cv, L, L, function () { draw(); });
+  var ov = $('#s-overlay'), ovTitle = $('#s-ov-title'), ovText = $('#s-ov-text'), ovBtn = $('#s-ov-btn');
+  var wrap = !!store.get('hub.snake.wrap', false);
+  var state = 'ready', snake, prev, dir, queue, food, bonus, score, eaten, stepMs, acc, best, lastTs = 0, raf = 0, clock = 0;
+
+  function bestKey() { return 'hub.snake.best.' + (wrap ? 'wrap' : 'walls'); }
+  function setMode(w) {
+    wrap = w; store.set('hub.snake.wrap', w);
+    $('#s-mode-walls').setAttribute('aria-pressed', String(!w)); $('#s-mode-wrap').setAttribute('aria-pressed', String(w));
+    best = store.get(bestKey(), 0); $('#s-best').textContent = best;
+  }
+  function lockModes(lock) { $$('#s-modes .pill').forEach(function (b) { b.disabled = lock; b.style.opacity = lock ? .45 : 1; }); }
+  function free(x, y) { return !snake.some(function (s) { return s.x === x && s.y === y; }) && !(food && food.x === x && food.y === y) && !(bonus && bonus.x === x && bonus.y === y); }
+  function randFree() {
+    var cells = []; for (var y = 0; y < N; y++) for (var x = 0; x < N; x++) if (free(x, y)) cells.push({ x: x, y: y });
+    return cells.length ? cells[Math.floor(Math.random() * cells.length)] : null;
+  }
+  function reset() {
+    snake = [{ x: 9, y: 10 }, { x: 8, y: 10 }, { x: 7, y: 10 }]; prev = snake.map(function (s) { return { x: s.x, y: s.y }; });
+    dir = { x: 1, y: 0 }; queue = []; food = null; bonus = null; score = 0; eaten = 0; stepMs = 150; acc = 0;
+    food = randFree(); updStats();
+  }
+  function updStats() { $('#s-score').textContent = score; $('#s-len').textContent = snake.length; $('#s-best').textContent = best; }
+  function showOverlay(t, txt, btn) { ovTitle.textContent = t; ovText.textContent = txt; ovBtn.textContent = btn; ov.hidden = false; }
+  function start() {
+    reset(); state = 'play'; ov.hidden = true; lockModes(true); lastTs = 0;
+    cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
+  }
+  function pause() { if (state === 'play') { state = 'paused'; showOverlay('Пауза', 'Нажмите, чтобы продолжить', 'Продолжить'); draw(); } }
+  function resume() { if (state === 'paused') { state = 'play'; ov.hidden = true; lastTs = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); } }
+  function end(won) {
+    state = won ? 'won' : 'over'; lockModes(false);
+    var rec = score > best; if (rec) { best = score; store.set(bestKey(), best); }
+    updStats();
+    showOverlay(won ? 'Победа!' : 'Игра окончена', 'Очки: ' + score + ' · Длина: ' + snake.length + (rec ? ' · новый рекорд!' : ''), 'Играть снова');
+    draw();
+  }
+  function turn(dx, dy) {
+    if (state === 'ready' || state === 'over' || state === 'won') { if (state === 'ready') { start(); } else return; }
+    if (state !== 'play') return;
+    var last = queue.length ? queue[queue.length - 1] : dir;
+    if ((dx === -last.x && dy === -last.y) || (dx === last.x && dy === last.y)) return;
+    if (queue.length < 3) queue.push({ x: dx, y: dy });
+  }
+  function step() {
+    if (queue.length) dir = queue.shift();
+    prev = snake.map(function (s) { return { x: s.x, y: s.y }; });
+    var nx = snake[0].x + dir.x, ny = snake[0].y + dir.y;
+    if (wrap) { nx = (nx + N) % N; ny = (ny + N) % N; }
+    else if (nx < 0 || ny < 0 || nx >= N || ny >= N) { end(false); return; }
+    var eatF = food && nx === food.x && ny === food.y, eatB = bonus && nx === bonus.x && ny === bonus.y;
+    var body = (eatF || eatB) ? snake : snake.slice(0, -1);
+    if (body.some(function (s) { return s.x === nx && s.y === ny; })) { end(false); return; }
+    snake.unshift({ x: nx, y: ny });
+    if (eatF) {
+      score += 10; eaten++; food = null; food = randFree();
+      stepMs = Math.max(70, 150 - Math.floor(eaten / 3) * 5);
+      if (eaten % 5 === 0 && !bonus) { var b = randFree(); if (b) bonus = { x: b.x, y: b.y, ttl: 7000 }; }
+      if (!food) { updStats(); end(true); return; }
+    } else if (eatB) { score += 50; bonus = null; }
+    else snake.pop();
+    updStats();
+  }
+  function frame(ts) {
+    if (state !== 'play') return;
+    raf = requestAnimationFrame(frame);
+    var dt = lastTs ? Math.min(100, ts - lastTs) : 0; lastTs = ts; clock += dt / 1000;
+    acc += dt;
+    if (bonus) { bonus.ttl -= dt; if (bonus.ttl <= 0) bonus = null; }
+    while (acc >= stepMs && state === 'play') { acc -= stepMs; step(); }
+    draw();
+  }
+
+  /* — Отрисовка — */
+  function mix(a, b, t) { return [Math.round(a[0] + (b[0] - a[0]) * t), Math.round(a[1] + (b[1] - a[1]) * t), Math.round(a[2] + (b[2] - a[2]) * t)]; }
+  function draw() {
+    var c = ctx; c.fillStyle = '#050912'; c.fillRect(0, 0, L, L);
+    for (var y = 0; y < N; y++) for (var x = 0; x < N; x++) if ((x + y) % 2) { c.fillStyle = 'rgba(148,163,184,.035)'; c.fillRect(x * CS, y * CS, CS, CS); }
+    c.lineWidth = 3; c.strokeStyle = wrap ? 'rgba(103,232,249,.35)' : 'rgba(167,139,250,.85)'; c.setLineDash(wrap ? [8, 8] : []); c.strokeRect(1.5, 1.5, L - 3, L - 3); c.setLineDash([]);
+    if (!snake) return;
+    var pulse = Math.sin(clock * 6);
+    if (food) {
+      var fx = food.x * CS + CS / 2, fy = food.y * CS + CS / 2, fr = CS * 0.32 + pulse * 1.6;
+      var g = c.createRadialGradient(fx, fy, 1, fx, fy, fr * 2.2); g.addColorStop(0, 'rgba(244,114,182,.9)'); g.addColorStop(1, 'rgba(244,114,182,0)');
+      c.fillStyle = g; c.beginPath(); c.arc(fx, fy, fr * 2.2, 0, TAU); c.fill();
+      c.fillStyle = '#f9a8d4'; c.beginPath(); c.arc(fx, fy, fr, 0, TAU); c.fill();
+    }
+    if (bonus) {
+      var bx = bonus.x * CS + CS / 2, by = bonus.y * CS + CS / 2, br = CS * 0.42 + pulse * 1.2;
+      c.fillStyle = '#fbbf24'; c.beginPath();
+      for (var i = 0; i < 10; i++) { var rad = i % 2 ? br * 0.45 : br, an = -Math.PI / 2 + i * Math.PI / 5; c.lineTo(bx + Math.cos(an) * rad, by + Math.sin(an) * rad); }
+      c.closePath(); c.fill();
+      c.strokeStyle = 'rgba(251,191,36,.7)'; c.lineWidth = 2.5; c.beginPath(); c.arc(bx, by, CS * 0.62, -Math.PI / 2, -Math.PI / 2 + TAU * clamp(bonus.ttl / 7000, 0, 1)); c.stroke();
+    }
+    var t = state === 'play' ? clamp(acc / stepMs, 0, 1) : 1, n = snake.length;
+    var A = [103, 232, 249], B = [124, 58, 237];
+    for (var k = n - 1; k >= 0; k--) {
+      var cur = snake[k], pv = prev[Math.min(k, prev.length - 1)], px = cur.x, py = cur.y;
+      if (Math.abs(cur.x - pv.x) <= 1 && Math.abs(cur.y - pv.y) <= 1) { px = pv.x + (cur.x - pv.x) * t; py = pv.y + (cur.y - pv.y) * t; }
+      var col = mix(A, B, n > 1 ? k / (n - 1) : 0), inset = k === 0 ? 1.5 : 3;
+      c.fillStyle = 'rgb(' + col.join(',') + ')'; rr(c, px * CS + inset, py * CS + inset, CS - inset * 2, CS - inset * 2, k === 0 ? 9 : 7); c.fill();
+      if (k === 0) {
+        var ex = dir.x, ey = dir.y, hx = px * CS + CS / 2, hy = py * CS + CS / 2, px2 = -ey, py2 = ex;
+        c.fillStyle = '#04060c';
+        [-1, 1].forEach(function (sd) { c.beginPath(); c.arc(hx + ex * 4.5 + px2 * 5 * sd, hy + ey * 4.5 + py2 * 5 * sd, 2.6, 0, TAU); c.fill(); });
+        c.fillStyle = '#fff';
+        [-1, 1].forEach(function (sd) { c.beginPath(); c.arc(hx + ex * 5.2 + px2 * 5 * sd, hy + ey * 5.2 + py2 * 5 * sd, 1, 0, TAU); c.fill(); });
+      }
+    }
+  }
+
+  /* — Управление — */
+  var DIRS = { ArrowUp: [0, -1], w: [0, -1], W: [0, -1], ArrowDown: [0, 1], s: [0, 1], S: [0, 1], ArrowLeft: [-1, 0], a: [-1, 0], A: [-1, 0], ArrowRight: [1, 0], d: [1, 0], D: [1, 0] };
+  function onKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var d = DIRS[e.key];
+    if (d) { e.preventDefault(); if (!e.repeat || state === 'play') turn(d[0], d[1]); return; }
+    if (e.key === ' ' || e.key === 'p' || e.key === 'P' || e.key === 'Enter') {
+      e.preventDefault(); if (e.repeat) return;
+      if (state === 'play') pause(); else if (state === 'paused') resume(); else start();
+    }
+  }
+  [['#s-up', 0, -1], ['#s-down', 0, 1], ['#s-left', -1, 0], ['#s-right', 1, 0]].forEach(function (b) {
+    var el = $(b[0]);
+    el.addEventListener('pointerdown', function (e) { e.preventDefault(); el.classList.add('is-down'); turn(b[1], b[2]); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) { el.addEventListener(ev, function () { el.classList.remove('is-down'); }); });
+  });
+  $('#s-pause').addEventListener('click', function () { if (state === 'play') pause(); else if (state === 'paused') resume(); else start(); });
+  $('#s-restart').addEventListener('click', start);
+  ovBtn.addEventListener('click', function () { if (state === 'paused') resume(); else start(); });
+  $('#s-mode-walls').addEventListener('click', function () { if (state !== 'play' && state !== 'paused') { setMode(false); reset(); draw(); } });
+  $('#s-mode-wrap').addEventListener('click', function () { if (state !== 'play' && state !== 'paused') { setMode(true); reset(); draw(); } });
+
+  /* свайп по полю */
+  (function swipe() {
+    var el = cv.parentNode, g = null;
+    el.addEventListener('pointerdown', function (e) { if (e.target.closest('.overlay')) return; g = { x: e.clientX, y: e.clientY }; try { el.setPointerCapture(e.pointerId); } catch (_) {} });
+    el.addEventListener('pointermove', function (e) {
+      if (!g) return; var dx = e.clientX - g.x, dy = e.clientY - g.y;
+      if (Math.hypot(dx, dy) < 22) return;
+      if (Math.abs(dx) > Math.abs(dy)) turn(dx > 0 ? 1 : -1, 0); else turn(0, dy > 0 ? 1 : -1);
+      g.x = e.clientX; g.y = e.clientY;
+    });
+    el.addEventListener('pointerup', function () { g = null; }); el.addEventListener('pointercancel', function () { g = null; });
+  })();
+
+  setMode(wrap); reset(); draw();
+  Hub.register('snake', { onShow: draw, onHide: pause });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); });
+
+  return {
+    onKey: onKey,
+    debug: {
+      snapshot: function () { return { state: state, score: score, snake: snake.map(function (s) { return [s.x, s.y]; }), dir: [dir.x, dir.y], food: food && [food.x, food.y], wrap: wrap }; },
+      setFood: function (x, y) { food = { x: x, y: y }; }, step: step, start: start, turn: turn, setWrap: function (w) { setMode(w); }
+    }
+  };
+})();
+
+/* ════════════ 4. МЕДИА-ПЛЕЕР ════════════ */
+var MediaAPI = (function mediaPlayer() {
+  var phone = $('#m-phone'), video = $('#m-video');
+  var ICON = { play: '#i-play', pause: '#i-pause' };
+  var CLIPS = [
+    { id: 'mandelbrot', title: 'Множество Мандельброта', desc: 'Бесконечное приближение границы фрактала на комплексной плоскости.', tags: '#фракталы #комплексныечисла', likes: 1284 },
+    { id: 'life', title: 'Игра «Жизнь» Конвея', desc: 'Клеточный автомат: простые правила рождают сложные структуры.', tags: '#автоматы #симуляция', likes: 932 },
+    { id: 'rule110', title: 'Правило 110', desc: 'Одномерный автомат, способный выполнять любые вычисления.', tags: '#алгоритмы #логика', likes: 2210 },
+    { id: 'sierpinski', title: 'Треугольник Серпинского', desc: 'Самоподобный фрактал из вложенных треугольников.', tags: '#геометрия #фракталы', likes: 1760 },
+    { id: 'waves', title: 'Интерференция волн', desc: 'Сумма синусоид в пространстве и времени.', tags: '#тригонометрия #волны', likes: 845 }
+  ];
+  var items = CLIPS.map(function (c) {
+    return { type: 'file', id: c.id, title: c.title, desc: c.desc, tags: c.tags, likes: c.likes, poster: 'media/clips/' + c.id + '.jpg', badge: 'MP4',
+      sources: [['media/clips/' + c.id + '.mp4', 'video/mp4'], ['media/clips/' + c.id + '.webm', 'video/webm']] };
+  });
+  if (video.canPlayType && video.canPlayType('application/vnd.apple.mpegurl')) {
+    items.push({ type: 'hls', id: 'hls', title: 'Поток HLS: волны', desc: 'Адаптивный потоковый формат .m3u8 — нативно в Safari, без внешних серверов.', tags: '#hls #стрим', likes: 410, poster: 'media/hls/poster.jpg', badge: 'HLS', src: 'media/hls/stream.m3u8' });
+  }
+  if (HTMLCanvasElement.prototype.captureStream && 'srcObject' in HTMLMediaElement.prototype) {
+    items.push({ type: 'live', id: 'live', title: 'Прямой эфир: фигуры Лиссажу', desc: 'Живой поток: кадры рисуются прямо в браузере и транслируются в плеер.', tags: '#live #лиссажу', likes: 377, badge: 'LIVE' });
+  }
+
+  var idx = 0, loopOn = false, muted = true, likedSet = store.get('hub.media.liked', {}), inited = false, wantPlay = false;
+  var liveGen = null;
+
+  /* — Живой поток (MediaStream из canvas) — */
+  function makeLive() {
+    var cv = document.createElement('canvas'); cv.width = 360; cv.height = 640;
+    var c = cv.getContext('2d'), raf = 0, stream = cv.captureStream(30);
+    function draw(ts) {
+      raf = requestAnimationFrame(draw);
+      var t = ts / 1000;
+      var g = c.createLinearGradient(0, 0, 0, 640); g.addColorStop(0, '#070b14'); g.addColorStop(1, '#1b1038');
+      c.fillStyle = g; c.fillRect(0, 0, 360, 640);
+      c.strokeStyle = 'rgba(148,163,184,.10)'; c.lineWidth = 1; c.beginPath();
+      for (var i = 0; i <= 360; i += 30) { c.moveTo(i, 0); c.lineTo(i, 640); }
+      for (var j = 0; j <= 640; j += 30) { c.moveTo(0, j); c.lineTo(360, j); }
+      c.stroke();
+      [[3, 2, '#22d3ee', 0.55], [5, 4, '#a78bfa', 0.4], [3, 4, '#f472b6', 0.3]].forEach(function (p, n) {
+        c.strokeStyle = p[2]; c.lineWidth = 3 - n * 0.6; c.shadowColor = p[2]; c.shadowBlur = 12; c.globalAlpha = 0.95 - n * 0.2; c.beginPath();
+        for (var k = 0; k <= 360; k++) {
+          var a = k / 360 * TAU, x = 180 + 150 * Math.sin(p[0] * a + t * p[3]), y = 330 + 230 * Math.sin(p[1] * a);
+          k ? c.lineTo(x, y) : c.moveTo(x, y);
+        }
+        c.stroke();
+      });
+      c.shadowBlur = 0; c.globalAlpha = 1;
+      var ta = t * 1.4, hx = 180 + 150 * Math.sin(3 * ta + t * .55), hy = 330 + 230 * Math.sin(2 * ta);
+      c.fillStyle = '#fff'; c.beginPath(); c.arc(hx, hy, 7, 0, TAU); c.fill();
+      c.fillStyle = 'rgba(226,232,240,.85)'; c.font = '600 15px ui-monospace, Menlo, monospace'; c.textAlign = 'left';
+      c.fillText('x = sin(3τ + φ)   y = sin(2τ)', 18, 610);
+      var s = Math.floor(t); c.textAlign = 'right'; c.fillText(('0' + Math.floor(s / 60) % 60).slice(-2) + ':' + ('0' + s % 60).slice(-2), 342, 610);
+    }
+    raf = requestAnimationFrame(draw);
+    return { stream: stream, stop: function () { cancelAnimationFrame(raf); stream.getTracks().forEach(function (t) { t.stop(); }); } };
+  }
+  function stopLive() { if (liveGen) { liveGen.stop(); liveGen = null; } }
+
+  /* — Плейлист — */
+  var list = $('#m-list');
+  list.innerHTML = '';
+  items.forEach(function (it, i) {
+    var b = document.createElement('button'); b.className = 'pl-item'; b.setAttribute('role', 'listitem');
+    b.innerHTML = '<span class="th"' + (it.poster ? ' style="background-image:url(' + it.poster + ')"' : ' style="background:linear-gradient(160deg,#0e2a4a,#4c1d95)"') + '></span>' +
+      '<span class="min-w-0"><span class="nm block">' + it.title + '</span><span class="ds block">' + it.desc + '</span><span class="kind' + (it.type === 'live' ? ' live' : '') + '">' + it.badge + '</span></span>';
+    b.addEventListener('click', function () { load(i, i > idx ? 1 : -1, true); });
+    list.appendChild(b);
+  });
+
+  /* — Загрузка и воспроизведение — */
+  var spinEl = $('#m-spin'), flashEl = $('#m-flash'), msgEl = $('#m-msg');
+  function setIcon(useEl, id) { useEl.setAttribute('href', id); }
+  function showFlash(kind, stay) {
+    setIcon($('use', flashEl), kind === 'pause' ? ICON.pause : ICON.play);
+    flashEl.classList.remove('show'); void flashEl.offsetWidth;
+    if (stay) { flashEl.classList.add('stay'); flashEl.classList.remove('show'); } else { flashEl.classList.remove('stay'); flashEl.classList.add('show'); }
+  }
+  function fmtLikes(n) { return n >= 1000 ? (n / 1000).toFixed(1).replace('.', ',') + 'K' : String(n); }
+  function updLike() {
+    var it = items[idx], on = !!likedSet[it.id], b = $('#m-like');
+    b.setAttribute('aria-pressed', String(on));
+    $('#m-like-use').setAttribute('href', on ? '#i-heart-fill' : '#i-heart');
+    $('#m-like-n').textContent = fmtLikes(it.likes + (on ? 1 : 0));
+  }
+  function updUI() {
+    var it = items[idx];
+    $('#m-title').textContent = it.title; $('#m-desc').textContent = it.desc; $('#m-tags').textContent = it.tags;
+    $('#m-count').textContent = (idx + 1) + ' / ' + items.length;
+    var bd = $('#m-badge'); bd.hidden = it.type === 'file'; bd.textContent = it.type === 'live' ? '● LIVE' : it.badge; bd.classList.toggle('live', it.type === 'live');
+    $$('.pl-item', list).forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+    $('#m-progress').style.visibility = it.type === 'live' ? 'hidden' : 'visible';
+    updLike();
+    var act = $$('.pl-item', list)[idx]; if (act && act.scrollIntoView && list.scrollHeight > list.clientHeight + 2) { try { act.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (_) {} }
+  }
+  var errTimer = 0;
+  function load(i, dir, autoplay) {
+    idx = (i + items.length) % items.length; var it = items[idx];
+    clearTimeout(errTimer); msgEl.hidden = true; if (autoplay) wantPlay = true;
+    var swap = function () {
+      stopLive();
+      try { video.pause(); } catch (_) {}
+      video.removeAttribute('src'); video.srcObject = null; while (video.firstChild) video.removeChild(video.firstChild);
+      video.poster = it.poster || '';
+      video.loop = loopOn && it.type !== 'live';
+      video.muted = muted;
+      if (it.type === 'file') { it.sources.forEach(function (s) { var so = document.createElement('source'); so.src = s[0]; so.type = s[1]; video.appendChild(so); }); video.load(); }
+      else if (it.type === 'hls') { video.src = it.src; video.load(); }
+      else { liveGen = makeLive(); video.srcObject = liveGen.stream; }
+      setProgress(0); spinEl.classList.add('on'); updUI();
+      if (autoplay) play();
+    };
+    if (dir && video.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var els = [video, $('.m-caption', phone)], o = dir > 0 ? -10 : 10, done = 0;
+      els.forEach(function (el) {
+        var a = el.animate([{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(' + o + '%)' }], { duration: 160, easing: 'ease-in' });
+        a.onfinish = function () {
+          if (++done === els.length) { swap(); els.forEach(function (e2) { e2.animate([{ opacity: 0, transform: 'translateY(' + (-o) + '%)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, easing: 'ease-out' }); }); }
+        };
+      });
+    } else swap();
+  }
+  function play() {
+    wantPlay = true;
+    var p = video.play();
+    if (p && p.catch) p.catch(function (err) { if (err && err.name === 'NotAllowedError') { wantPlay = false; showFlash('play', true); } });
+  }
+  function pauseV() { wantPlay = false; video.pause(); }
+  function toggle() { if (video.paused) { play(); showFlash('pause'); } else { pauseV(); showFlash('play', true); } }
+  function next() { load(idx + 1, 1, true); }
+  function prev() { load(idx - 1, -1, true); }
+
+  video.addEventListener('playing', function () { spinEl.classList.remove('on'); flashEl.classList.remove('stay'); });
+  video.addEventListener('waiting', function () { spinEl.classList.add('on'); });
+  video.addEventListener('canplay', function () { spinEl.classList.remove('on'); });
+  video.addEventListener('pause', function () { if (!video.ended && wantPlay === false && Hub.current() === 'media') showFlash('play', true); });
+  video.addEventListener('ended', function () { if (!loopOn) next(); });
+  video.addEventListener('error', function (e) {
+    var t = e.target; /* у <source> ошибка приходит на каждый источник: ждём последний */
+    if (t.tagName === 'SOURCE' && t !== video.lastElementChild) return;
+    if (!video.getAttribute('src') && !video.querySelector('source') && !video.srcObject) return;
+    spinEl.classList.remove('on'); msgEl.hidden = false; clearTimeout(errTimer);
+    errTimer = setTimeout(function () { if (Hub.current() === 'media' && items.length > 1) next(); }, 1800);
+  }, true);
+
+  /* — Прогресс и перемотка — */
+  var prog = $('#m-progress'), fill = $('.fill', prog), knob = $('.knob', prog), scrub = false;
+  function setProgress(r) { r = clamp(r || 0, 0, 1); fill.style.width = (r * 100) + '%'; knob.style.left = (r * 100) + '%'; prog.setAttribute('aria-valuenow', String(Math.round(r * 100))); }
+  video.addEventListener('timeupdate', function () { if (!scrub && isFinite(video.duration) && video.duration > 0) setProgress(video.currentTime / video.duration); });
+  function seekAt(e) {
+    var r = $('.track', prog).getBoundingClientRect(), k = clamp((e.clientX - r.left) / r.width, 0, 1);
+    if (isFinite(video.duration) && video.duration > 0) { video.currentTime = k * video.duration; setProgress(k); }
+  }
+  prog.addEventListener('pointerdown', function (e) { e.stopPropagation(); scrub = true; prog.classList.add('is-scrub'); try { prog.setPointerCapture(e.pointerId); } catch (_) {} seekAt(e); });
+  prog.addEventListener('pointermove', function (e) { if (scrub) seekAt(e); });
+  function endScrub() { scrub = false; prog.classList.remove('is-scrub'); }
+  prog.addEventListener('pointerup', endScrub); prog.addEventListener('pointercancel', endScrub);
+
+  /* — Кнопки справа — */
+  function setMute(m) { muted = m; video.muted = m; $('#m-mute-use').setAttribute('href', m ? '#i-mute' : '#i-vol'); }
+  function like(force) {
+    var it = items[idx]; if (force === true) likedSet[it.id] = 1; else if (likedSet[it.id]) delete likedSet[it.id]; else likedSet[it.id] = 1;
+    store.set('hub.media.liked', likedSet); updLike();
+  }
+  function heartAt(x, y) {
+    var r = phone.getBoundingClientRect(), h = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    h.setAttribute('class', 'm-heart'); h.style.left = (x - r.left) + 'px'; h.style.top = (y - r.top) + 'px';
+    h.innerHTML = '<use href="#i-heart-fill"/>'; phone.appendChild(h); setTimeout(function () { if (h.parentNode) h.parentNode.removeChild(h); }, 950);
+  }
+  $('#m-like').addEventListener('click', function (e) { e.stopPropagation(); like(); });
+  $('#m-mute').addEventListener('click', function (e) { e.stopPropagation(); setMute(!muted); });
+  $('#m-loop').addEventListener('click', function (e) { e.stopPropagation(); loopOn = !loopOn; video.loop = loopOn && items[idx].type !== 'live'; this.setAttribute('aria-pressed', String(loopOn)); });
+  $('#m-full').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var el = phone, rq = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+    else if (rq) { try { rq.call(el); } catch (_) {} }
+    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+  });
+
+  /* — Жесты: тап — пауза, двойной тап — лайк, свайп вверх/вниз — следующий/предыдущий — */
+  var g = null, lastTap = 0, lastX = 0, lastY = 0, tapTimer = 0, wheelLock = false;
+  phone.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.m-act, .m-progress')) return;
+    g = { x: e.clientX, y: e.clientY, t: performance.now() };
+  });
+  phone.addEventListener('pointerup', function (e) {
+    if (!g) return; var dx = e.clientX - g.x, dy = e.clientY - g.y, dt = performance.now() - g.t; g = null;
+    if (Math.abs(dy) > 60 && Math.abs(dy) > Math.abs(dx) * 1.4) { dy < 0 ? next() : prev(); return; }
+    if (Math.hypot(dx, dy) < 12 && dt < 350) {
+      var now = performance.now();
+      if (now - lastTap < 300 && Math.hypot(e.clientX - lastX, e.clientY - lastY) < 50) {
+        clearTimeout(tapTimer); lastTap = 0; like(true); heartAt(e.clientX, e.clientY);
+      } else { lastTap = now; lastX = e.clientX; lastY = e.clientY; clearTimeout(tapTimer); tapTimer = setTimeout(toggle, 300); }
+    }
+  });
+  phone.addEventListener('pointercancel', function () { g = null; });
+  phone.addEventListener('wheel', function (e) {
+    e.preventDefault(); if (wheelLock || Math.abs(e.deltaY) < 8) return; wheelLock = true; setTimeout(function () { wheelLock = false; }, 650);
+    e.deltaY > 0 ? next() : prev();
+  }, { passive: false });
+  phone.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  function onKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key, h = true;
+    if (k === 'ArrowDown') { if (!e.repeat) next(); } else if (k === 'ArrowUp') { if (!e.repeat) prev(); }
+    else if (k === ' ') { if (!e.repeat) toggle(); }
+    else if (k === 'm' || k === 'M') setMute(!muted);
+    else if (k === 'l' || k === 'L') { if (!e.repeat) like(); }
+    else if (k === 'f' || k === 'F') $('#m-full').click();
+    else h = false;
+    if (h) e.preventDefault();
+  }
+
+  Hub.register('media', {
+    onShow: function () {
+      if (!inited) { inited = true; setMute(true); load(0, 0, true); }
+      else if (items[idx].type === 'live' && !liveGen) load(idx, 0, true);
+      else play();
+    },
+    onHide: function () { pauseV(); if (items[idx].type === 'live') stopLive(); }
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden && Hub.current() === 'media') pauseV(); });
+
+  return { onKey: onKey, debug: { items: items, idx: function () { return idx; }, video: video, next: next, prev: prev, load: load, play: play } };
+})();
+
+/* ════════════ Клавиатура: маршрутизация в активную вкладку ════════════ */
+document.addEventListener('keydown', function (e) {
+  var t = Hub.current(), tag = (e.target && e.target.tagName) || '';
+  if (e.target.closest && e.target.closest('[role=tablist]')) return;
+  if (tag === 'INPUT' && e.target.type !== 'range') return;
+  if ((t === 'tetris' || t === 'snake') && tag === 'BUTTON') e.target.blur();
+  if (tag === 'INPUT' && /^Arrow/.test(e.key) && t !== 'tetris' && t !== 'snake') return;
+  if (t === 'tetris') TetrisAPI.onKey(e, true);
+  else if (t === 'snake') SnakeAPI.onKey(e);
+  else if (t === 'media') MediaAPI.onKey(e);
+});
+document.addEventListener('keyup', function (e) { if (Hub.current() === 'tetris') TetrisAPI.onKeyUp(e); });
+/* не даём странице скроллиться/масштабироваться жестами во время игры */
+document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+
+/* отладочный доступ для автотестов */
+window.__hub = { tetris: TetrisAPI.debug, snake: SnakeAPI.debug, media: MediaAPI.debug, go: Hub.show };
+
+window.addEventListener('hashchange', function () { Hub.show((location.hash || '').slice(1)); });
+
+/* старт */
+var first = (location.hash || '').slice(1);
+Hub.show('geometry'); /* инициализация главной */
+if (first && first !== 'geometry') Hub.show(first);
+})();
+</script>
+<script>
+/* Независимая навигация: работает даже если старый игровой скрипт выше завершился с ошибкой. */
+(function () {
+  'use strict';
+  var allowed = ['geometry', 'tetris', 'snake', 'media'];
+  function showTab(name) {
+    if (allowed.indexOf(name) === -1) return;
+    document.querySelectorAll('[role="tab"][data-tab]').forEach(function (button) {
+      var active = button.getAttribute('data-tab') === name;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    document.querySelectorAll('.panel[id^="tab-"]').forEach(function (panel) {
+      var active = panel.id === 'tab-' + name;
+      panel.classList.toggle('is-active', active);
+      panel.setAttribute('aria-hidden', String(!active));
+      if (active) panel.scrollTop = 0;
+    });
+    try { history.replaceState(null, '', '#' + name); } catch (ignore) {}
+  }
+  /* Capture-фаза позволяет обработать клик независимо от сломанных обработчиков выше. */
+  document.addEventListener('click', function (event) {
+    var button = event.target && event.target.closest
+      ? event.target.closest('[role="tab"][data-tab]') : null;
+    if (!button) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    showTab(button.getAttribute('data-tab'));
+    if (event.detail > 0) button.blur();
+  }, true);
+  document.addEventListener('keydown', function (event) {
+    var button = event.target && event.target.closest
+      ? event.target.closest('[role="tab"][data-tab]') : null;
+    if (!button || (event.key !== 'ArrowDown' && event.key !== 'ArrowUp')) return;
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('[role="tab"][data-tab]'));
+    var index = buttons.indexOf(button);
+    var step = event.key === 'ArrowDown' ? 1 : -1;
+    var next = buttons[(index + step + buttons.length) % buttons.length];
+    if (next) { event.preventDefault(); next.focus(); showTab(next.getAttribute('data-tab')); }
+  }, true);
+  var initial = (location.hash || '').slice(1);
+  showTab(allowed.indexOf(initial) !== -1 ? initial : 'geometry');
+})();
+</script>
+</body>
+</html>
