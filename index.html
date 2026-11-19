@@ -64,20 +64,20 @@
         <span class="nav-short">Геометрия</span>
         <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Геометрия</span><span class="block text-xs text-slate-400">Главная · формулы и 3D</span></span>
       </button>
-      <button id="nav-tetris" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-tetris" data-tab="tetris" title="Игровой блок: Тетрис" tabindex="-1">
+      <button id="nav-tetris" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-tetris" data-tab="tetris" title="Clash Royale / Игры" tabindex="-1">
         <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-tetris"/></svg></span>
         <span class="nav-short">Тетрис</span>
-        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Игровой блок: Тетрис</span><span class="block text-xs text-slate-400">Пространственное мышление</span></span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Clash Royale / Игры</span><span class="block text-xs text-slate-400">Cloud gaming · Clash Royale</span></span>
       </button>
-      <button id="nav-snake" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-snake" data-tab="snake" title="Игровой блок: Змейка" tabindex="-1">
+      <button id="nav-snake" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-snake" data-tab="snake" title="Minecraft" tabindex="-1">
         <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-snake"/></svg></span>
         <span class="nav-short">Змейка</span>
-        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Игровой блок: Змейка</span><span class="block text-xs text-slate-400">Координаты и траектории</span></span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Minecraft</span><span class="block text-xs text-slate-400">Minecraft Classic</span></span>
       </button>
-      <button id="nav-media" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-media" data-tab="media" title="Медиа-плеер" tabindex="-1">
+      <button id="nav-media" class="nav-item" role="tab" aria-selected="false" aria-controls="tab-media" data-tab="media" title="TikTok" tabindex="-1">
         <span class="nav-ico"><svg class="h-5 w-5"><use href="#i-media"/></svg></span>
         <span class="nav-short">Плеер</span>
-        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">Медиа-плеер</span><span class="block text-xs text-slate-400">Короткие видео и потоки</span></span>
+        <span class="nav-long"><span class="block text-[15px] font-bold leading-tight">TikTok</span><span class="block text-xs text-slate-400">TikTok · видео</span></span>
       </button>
     </nav>
 
@@ -248,23 +248,24 @@
 <!-- ───────── 2. Тетрис (CloudMoon: Brawl Stars / Clash Royale) ───────── -->
     <section id="tab-tetris" class="panel" role="tabpanel" aria-labelledby="nav-tetris" aria-hidden="true">
       <div class="mx-auto max-w-[1060px] h-full">
-        <iframe src="https://web.cloudmoonapp.com/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+        <iframe title="CloudMoon — игры" src="https://web.cloudmoonapp.com/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
       </div>
     </section>
 
 <!-- ───────── 3. Змейка (Minecraft Web) ───────── -->
     <section id="tab-snake" class="panel" role="tabpanel" aria-labelledby="nav-snake" aria-hidden="true">
       <div class="mx-auto max-w-[1060px] h-full">
-        <iframe src="https://classic.minecraft.net/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; fullscreen; pointer-lock" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+        <iframe title="Minecraft Classic" src="https://classic.minecraft.net/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; fullscreen; pointer-lock" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
       </div>
     </section>
 
-<!-- ───────── 4. Медиа-плеер (TikTok Web) ───────── -->
+<!-- ───────── 4. TikTok (TikTok Web) ───────── -->
     <section id="tab-media" class="panel" role="tabpanel" aria-labelledby="nav-media" aria-hidden="true">
       <div class="mx-auto max-w-[1060px] h-full">
-        <iframe src="https://pablo.tools (https://pablo.tools/)" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        <iframe title="TikTok" src="https://www.tiktok.com/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
       </div>
     </section>
+<script>
 /* ════════════════════════════════════════════════════════════════
    Геометрия · интерактивный портал. Весь код автономный:
    без внешних скриптов, шрифтов, iframe и сетевых запросов.
@@ -1287,3 +1288,4 @@ if (first && first !== 'geometry') Hub.show(first);
 </script>
 </body>
 </html>
+
