@@ -1286,6 +1286,52 @@ Hub.show('geometry'); /* инициализация главной */
 if (first && first !== 'geometry') Hub.show(first);
 })();
 </script>
+<script>
+/* Независимая навигация: работает даже если старый игровой скрипт выше завершился с ошибкой. */
+(function () {
+  'use strict';
+  var allowed = ['geometry', 'tetris', 'snake', 'media'];
+  function showTab(name) {
+    if (allowed.indexOf(name) === -1) return;
+    document.querySelectorAll('[role="tab"][data-tab]').forEach(function (button) {
+      var active = button.getAttribute('data-tab') === name;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    document.querySelectorAll('.panel[id^="tab-"]').forEach(function (panel) {
+      var active = panel.id === 'tab-' + name;
+      panel.classList.toggle('is-active', active);
+      panel.setAttribute('aria-hidden', String(!active));
+      if (active) panel.scrollTop = 0;
+    });
+    try { history.replaceState(null, '', '#' + name); } catch (ignore) {}
+  }
+  /* Capture-фаза позволяет обработать клик независимо от сломанных обработчиков выше. */
+  document.addEventListener('click', function (event) {
+    var button = event.target && event.target.closest
+      ? event.target.closest('[role="tab"][data-tab]') : null;
+    if (!button) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    showTab(button.getAttribute('data-tab'));
+    if (event.detail > 0) button.blur();
+  }, true);
+  document.addEventListener('keydown', function (event) {
+    var button = event.target && event.target.closest
+      ? event.target.closest('[role="tab"][data-tab]') : null;
+    if (!button || (event.key !== 'ArrowDown' && event.key !== 'ArrowUp')) return;
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('[role="tab"][data-tab]'));
+    var index = buttons.indexOf(button);
+    var step = event.key === 'ArrowDown' ? 1 : -1;
+    var next = buttons[(index + step + buttons.length) % buttons.length];
+    if (next) { event.preventDefault(); next.focus(); showTab(next.getAttribute('data-tab')); }
+  }, true);
+  var initial = (location.hash || '').slice(1);
+  showTab(allowed.indexOf(initial) !== -1 ? initial : 'geometry');
+})();
+</script>
 </body>
 </html>
+
 
