@@ -245,138 +245,26 @@
       </div>
     </section>
 
-    <!-- ───────── 2. Тетрис ───────── -->
+<!-- ───────── 2. Тетрис (CloudMoon: Brawl Stars / Clash Royale) ───────── -->
     <section id="tab-tetris" class="panel" role="tabpanel" aria-labelledby="nav-tetris" aria-hidden="true">
-      <div class="mx-auto max-w-[1060px]">
-        <header class="panel-head">
-          <div>
-            <h1 class="h-title">Игровой блок: <span class="h-grad">Тетрис</span></h1>
-            <p class="h-sub">Складывайте фигуры из квадратов — тренировка пространственного мышления и вращений на плоскости.</p>
-          </div>
-        </header>
-        <div class="t-layout">
-          <div class="t-hold mini-box"><div class="lbl">Запас</div><canvas id="t-hold" class="h-[72px] w-[96px]"></canvas></div>
-          <div class="t-stats">
-            <div class="stat"><div class="lbl">Очки</div><div class="val" id="t-score">0</div></div>
-            <div class="grid grid-cols-2 gap-2.5">
-              <div class="stat"><div class="lbl">Уровень</div><div class="val" id="t-level">1</div></div>
-              <div class="stat"><div class="lbl">Линии</div><div class="val" id="t-lines">0</div></div>
-            </div>
-            <div class="stat"><div class="lbl">Рекорд</div><div class="val" id="t-best">0</div></div>
-          </div>
-          <div class="t-board">
-            <div class="board-frame">
-              <canvas id="t-board" aria-label="Игровое поле Тетрис"></canvas>
-              <div id="t-overlay" class="overlay">
-                <h3 id="t-ov-title">Тетрис</h3>
-                <p id="t-ov-text">← → движение · ↑ поворот · ↓ ускорить · Пробел — сброс · C — запас · P — пауза</p>
-                <button id="t-ov-btn" class="btn btn-primary mt-1 px-8">Старт</button>
-              </div>
-            </div>
-          </div>
-          <div class="t-next mini-box"><div class="lbl">Далее</div><canvas id="t-next" class="h-[210px] w-[96px]"></canvas></div>
-          <div class="t-dpad dpad-row" aria-label="Управление движением">
-            <button id="t-left" class="btn pad" aria-label="Влево"><svg class="h-7 w-7"><use href="#i-left"/></svg></button>
-            <button id="t-down" class="btn pad" aria-label="Вниз"><svg class="h-7 w-7"><use href="#i-down"/></svg></button>
-            <button id="t-right" class="btn pad" aria-label="Вправо"><svg class="h-7 w-7"><use href="#i-right"/></svg></button>
-          </div>
-          <div class="t-actions grid gap-2.5">
-            <div class="actions-grid">
-              <button id="t-rot" class="btn pad-lg" aria-label="Повернуть"><svg class="h-7 w-7"><use href="#i-rot"/></svg></button>
-              <button id="t-drop" class="btn pad-lg" aria-label="Сбросить вниз"><svg class="h-7 w-7"><use href="#i-drop"/></svg></button>
-            </div>
-            <div class="grid grid-cols-3 gap-2.5">
-              <button id="t-holdbtn" class="btn" aria-label="Запас"><svg class="h-6 w-6"><use href="#i-swap"/></svg></button>
-              <button id="t-pause" class="btn" aria-label="Пауза"><svg class="h-6 w-6"><use href="#i-pause"/></svg></button>
-              <button id="t-restart" class="btn" aria-label="Заново"><svg class="h-6 w-6"><use href="#i-restart"/></svg></button>
-            </div>
-          </div>
-        </div>
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe src="https://web.cloudmoonapp.com/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
       </div>
     </section>
 
-    <!-- ───────── 3. Змейка ───────── -->
+<!-- ───────── 3. Змейка (Minecraft Web) ───────── -->
     <section id="tab-snake" class="panel" role="tabpanel" aria-labelledby="nav-snake" aria-hidden="true">
-      <div class="mx-auto max-w-[1060px]">
-        <header class="panel-head">
-          <div>
-            <h1 class="h-title">Игровой блок: <span class="h-grad">Змейка</span></h1>
-            <p class="h-sub">Собирайте точки на координатной сетке 20 × 20. Свайпайте по полю или используйте стрелки.</p>
-          </div>
-          <div id="s-modes" class="flex gap-2" role="group" aria-label="Режим поля">
-            <button id="s-mode-walls" class="pill" aria-pressed="true">Стены</button>
-            <button id="s-mode-wrap" class="pill" aria-pressed="false">Без стен</button>
-          </div>
-        </header>
-        <div class="s-layout">
-          <div class="s-stats">
-            <div class="stat"><div class="lbl">Очки</div><div class="val" id="s-score">0</div></div>
-            <div class="stat"><div class="lbl">Рекорд</div><div class="val" id="s-best">0</div></div>
-            <div class="stat"><div class="lbl">Длина</div><div class="val" id="s-len">3</div></div>
-          </div>
-          <div class="s-board">
-            <div class="snake-frame">
-              <canvas id="s-board" aria-label="Игровое поле Змейка"></canvas>
-              <div id="s-overlay" class="overlay">
-                <h3 id="s-ov-title">Змейка</h3>
-                <p id="s-ov-text">Стрелки или WASD — поворот. Свайп по полю. Золотая звезда даёт +50.</p>
-                <button id="s-ov-btn" class="btn btn-primary mt-1 px-8">Старт</button>
-              </div>
-            </div>
-          </div>
-          <div class="s-pad grid justify-items-center gap-4">
-            <div class="cross" aria-label="Управление направлением">
-              <button id="s-up" class="btn up" aria-label="Вверх"><svg class="h-8 w-8"><use href="#i-up"/></svg></button>
-              <button id="s-left" class="btn left" aria-label="Влево"><svg class="h-8 w-8"><use href="#i-left"/></svg></button>
-              <button id="s-right" class="btn right" aria-label="Вправо"><svg class="h-8 w-8"><use href="#i-right"/></svg></button>
-              <button id="s-down" class="btn down" aria-label="Вниз"><svg class="h-8 w-8"><use href="#i-down"/></svg></button>
-            </div>
-            <div class="grid w-full grid-cols-2 gap-2.5">
-              <button id="s-pause" class="btn px-3"><svg class="h-6 w-6"><use href="#i-pause"/></svg>Пауза</button>
-              <button id="s-restart" class="btn px-3"><svg class="h-6 w-6"><use href="#i-restart"/></svg>Заново</button>
-            </div>
-          </div>
-        </div>
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe src="https://classic.minecraft.net/" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; fullscreen; pointer-lock" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
       </div>
     </section>
 
-    <!-- ───────── 4. Медиа-плеер ───────── -->
+<!-- ───────── 4. Медиа-плеер (TikTok Web) ───────── -->
     <section id="tab-media" class="panel" role="tabpanel" aria-labelledby="nav-media" aria-hidden="true">
-      <div class="mx-auto max-w-[1060px]">
-        <header class="panel-head">
-          <div>
-            <h1 class="h-title">Медиа-<span class="h-grad">плеер</span></h1>
-            <p class="h-sub">Вертикальные ролики и потоки, которые лежат прямо на сайте. Свайп вверх/вниз — следующий ролик, двойной тап — «нравится».</p>
-          </div>
-        </header>
-        <div class="m-layout">
-          <div id="m-phone" class="phone" tabindex="0" aria-label="Вертикальный видеоплеер">
-            <video id="m-video" playsinline webkit-playsinline muted preload="metadata" disablepictureinpicture></video>
-            <div class="shade-top"></div><div class="shade-bot"></div>
-            <div class="m-topbar"><span id="m-badge" class="m-badge" hidden></span><span id="m-count" class="m-badge ml-auto">1 / 1</span></div>
-            <div class="m-center"><div id="m-flash" class="flash"><svg class="h-10 w-10 text-white"><use href="#i-play"/></svg></div><div id="m-spin" class="spin"></div></div>
-            <div class="m-rail">
-              <button id="m-like" class="m-act" aria-pressed="false" aria-label="Нравится"><span class="ico"><svg class="h-6 w-6"><use id="m-like-use" href="#i-heart"/></svg></span><span id="m-like-n">0</span></button>
-              <button id="m-mute" class="m-act" aria-label="Звук"><span class="ico"><svg class="h-6 w-6"><use id="m-mute-use" href="#i-mute"/></svg></span><span>Звук</span></button>
-              <button id="m-loop" class="m-act" aria-pressed="false" aria-label="Повтор"><span class="ico"><svg class="h-6 w-6"><use href="#i-loop"/></svg></span><span>Повтор</span></button>
-              <button id="m-full" class="m-act" aria-label="На весь экран"><span class="ico"><svg class="h-6 w-6"><use href="#i-full"/></svg></span><span>Экран</span></button>
-            </div>
-            <div class="m-caption"><div id="m-title" class="t"></div><div id="m-desc" class="d"></div><div id="m-tags" class="tags"></div></div>
-            <div id="m-progress" class="m-progress" role="slider" aria-label="Перемотка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="track"><div class="fill"></div><div class="knob"></div></div></div>
-            <div id="m-msg" class="m-msg" hidden><div><div class="mb-2 text-lg font-bold text-white">Не удалось воспроизвести</div><div class="text-sm text-slate-400">Переходим к следующему ролику…</div></div></div>
-          </div>
-          <div id="m-list" class="pl-list" role="list" aria-label="Список роликов"></div>
-        </div>
+      <div class="mx-auto max-w-[1060px] h-full">
+        <iframe src="https://pablo.tools (https://pablo.tools/)" style="width:100%; height:85vh; border:none; border-radius:16px;" allow="autoplay; encrypted-media; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
       </div>
     </section>
-
-  </main>
-</div>
-
-<noscript><div style="position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#04060c;color:#cbd5e1;font:16px sans-serif">Для работы портала включите JavaScript.</div></noscript>
-
-<script src="assets/geometry3d.js"></script>
-<script>
 /* ════════════════════════════════════════════════════════════════
    Геометрия · интерактивный портал. Весь код автономный:
    без внешних скриптов, шрифтов, iframe и сетевых запросов.
